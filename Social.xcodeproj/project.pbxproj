@@ -14,6 +14,11 @@
 		8CB63A8C1E894F3A00833C0B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CB63A8A1E894F3A00833C0B /* LaunchScreen.storyboard */; };
 		8CB63A941E894FF400833C0B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8CB63A931E894FF400833C0B /* GoogleService-Info.plist */; };
 		8CB63A9B1E895E2300833C0B /* Albondigas.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8CB63A9A1E895E2300833C0B /* Albondigas.ttf */; };
+		8CB63A9D1E897F2300833C0B /* FancyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB63A9C1E897F2300833C0B /* FancyView.swift */; };
+		8CB63AA11E897FE500833C0B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB63AA01E897FE500833C0B /* Constants.swift */; };
+		8CB63AA31E8981B600833C0B /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB63AA21E8981B600833C0B /* RoundButton.swift */; };
+		8CB63AA51E89834000833C0B /* FancyField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB63AA41E89834000833C0B /* FancyField.swift */; };
+		8CB63AA71E89846C00833C0B /* FancyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB63AA61E89846C00833C0B /* FancyButton.swift */; };
 		93C4F9BDC88DD007D3817789 /* Pods_Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49264DCB0C970B9E0DAA8601 /* Pods_Social.framework */; };
 /* End PBXBuildFile section */
 
@@ -28,7 +33,12 @@
 		8CB63A8B1E894F3A00833C0B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8CB63A8D1E894F3A00833C0B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8CB63A931E894FF400833C0B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		8CB63A9A1E895E2300833C0B /* Albondigas.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Albondigas.ttf; sourceTree = "<group>"; };
+		8CB63A9A1E895E2300833C0B /* Albondigas.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Albondigas.ttf; path = ../Albondigas.ttf; sourceTree = "<group>"; };
+		8CB63A9C1E897F2300833C0B /* FancyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FancyView.swift; sourceTree = "<group>"; };
+		8CB63AA01E897FE500833C0B /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		8CB63AA21E8981B600833C0B /* RoundButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
+		8CB63AA41E89834000833C0B /* FancyField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FancyField.swift; sourceTree = "<group>"; };
+		8CB63AA61E89846C00833C0B /* FancyButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FancyButton.swift; sourceTree = "<group>"; };
 		BFAA7260216BCC5F799858AA /* Pods-Social.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Social.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Social/Pods-Social.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -55,7 +65,6 @@
 		8CB63A751E894F3900833C0B = {
 			isa = PBXGroup;
 			children = (
-				8CB63A9A1E895E2300833C0B /* Albondigas.ttf */,
 				8CB63A801E894F3A00833C0B /* Social */,
 				8CB63A7F1E894F3A00833C0B /* Products */,
 				A88240D111490A97BA4F9E6D /* Pods */,
@@ -77,6 +86,8 @@
 				8CB63A951E89527E00833C0B /* Model */,
 				8CB63A961E89528400833C0B /* View */,
 				8CB63A971E89528900833C0B /* Controller */,
+				8CB63A9F1E897FB100833C0B /* Resources */,
+				8CB63A9E1E897FA800833C0B /* Utilities */,
 				8CB63A811E894F3A00833C0B /* AppDelegate.swift */,
 				8CB63A851E894F3A00833C0B /* Main.storyboard */,
 				8CB63A881E894F3A00833C0B /* Assets.xcassets */,
@@ -97,6 +108,10 @@
 		8CB63A961E89528400833C0B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				8CB63A9C1E897F2300833C0B /* FancyView.swift */,
+				8CB63AA21E8981B600833C0B /* RoundButton.swift */,
+				8CB63AA41E89834000833C0B /* FancyField.swift */,
+				8CB63AA61E89846C00833C0B /* FancyButton.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -107,6 +122,22 @@
 				8CB63A831E894F3A00833C0B /* SignInVC.swift */,
 			);
 			name = Controller;
+			sourceTree = "<group>";
+		};
+		8CB63A9E1E897FA800833C0B /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				8CB63AA01E897FE500833C0B /* Constants.swift */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
+		8CB63A9F1E897FB100833C0B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8CB63A9A1E895E2300833C0B /* Albondigas.ttf */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		A88240D111490A97BA4F9E6D /* Pods */ = {
@@ -244,8 +275,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CB63AA51E89834000833C0B /* FancyField.swift in Sources */,
 				8CB63A841E894F3A00833C0B /* SignInVC.swift in Sources */,
+				8CB63AA31E8981B600833C0B /* RoundButton.swift in Sources */,
+				8CB63AA71E89846C00833C0B /* FancyButton.swift in Sources */,
 				8CB63A821E894F3A00833C0B /* AppDelegate.swift in Sources */,
+				8CB63A9D1E897F2300833C0B /* FancyView.swift in Sources */,
+				8CB63AA11E897FE500833C0B /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
