@@ -13,6 +13,7 @@
 		8CB63A891E894F3A00833C0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CB63A881E894F3A00833C0B /* Assets.xcassets */; };
 		8CB63A8C1E894F3A00833C0B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CB63A8A1E894F3A00833C0B /* LaunchScreen.storyboard */; };
 		8CB63A941E894FF400833C0B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8CB63A931E894FF400833C0B /* GoogleService-Info.plist */; };
+		8CB63A9B1E895E2300833C0B /* Albondigas.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8CB63A9A1E895E2300833C0B /* Albondigas.ttf */; };
 		93C4F9BDC88DD007D3817789 /* Pods_Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49264DCB0C970B9E0DAA8601 /* Pods_Social.framework */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +28,7 @@
 		8CB63A8B1E894F3A00833C0B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8CB63A8D1E894F3A00833C0B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8CB63A931E894FF400833C0B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8CB63A9A1E895E2300833C0B /* Albondigas.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Albondigas.ttf; sourceTree = "<group>"; };
 		BFAA7260216BCC5F799858AA /* Pods-Social.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Social.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Social/Pods-Social.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -53,6 +55,7 @@
 		8CB63A751E894F3900833C0B = {
 			isa = PBXGroup;
 			children = (
+				8CB63A9A1E895E2300833C0B /* Albondigas.ttf */,
 				8CB63A801E894F3A00833C0B /* Social */,
 				8CB63A7F1E894F3A00833C0B /* Products */,
 				A88240D111490A97BA4F9E6D /* Pods */,
@@ -178,6 +181,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CB63A9B1E895E2300833C0B /* Albondigas.ttf in Resources */,
 				8CB63A8C1E894F3A00833C0B /* LaunchScreen.storyboard in Resources */,
 				8CB63A941E894FF400833C0B /* GoogleService-Info.plist in Resources */,
 				8CB63A891E894F3A00833C0B /* Assets.xcassets in Resources */,
