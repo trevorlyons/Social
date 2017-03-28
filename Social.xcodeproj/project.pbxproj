@@ -20,6 +20,7 @@
 		8CB63AA51E89834000833C0B /* FancyField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB63AA41E89834000833C0B /* FancyField.swift */; };
 		8CB63AA71E89846C00833C0B /* FancyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB63AA61E89846C00833C0B /* FancyButton.swift */; };
 		8CB63AAD1E8A6D0700833C0B /* FeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB63AAC1E8A6D0700833C0B /* FeedVC.swift */; };
+		8CB63AAF1E8A7E1E00833C0B /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB63AAE1E8A7E1E00833C0B /* CircleView.swift */; };
 		93C4F9BDC88DD007D3817789 /* Pods_Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49264DCB0C970B9E0DAA8601 /* Pods_Social.framework */; };
 /* End PBXBuildFile section */
 
@@ -42,6 +43,7 @@
 		8CB63AA61E89846C00833C0B /* FancyButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FancyButton.swift; sourceTree = "<group>"; };
 		8CB63AAB1E89AD2100833C0B /* Social.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Social.entitlements; sourceTree = "<group>"; };
 		8CB63AAC1E8A6D0700833C0B /* FeedVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedVC.swift; sourceTree = "<group>"; };
+		8CB63AAE1E8A7E1E00833C0B /* CircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
 		BFAA7260216BCC5F799858AA /* Pods-Social.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Social.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Social/Pods-Social.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -116,6 +118,7 @@
 				8CB63AA21E8981B600833C0B /* RoundButton.swift */,
 				8CB63AA41E89834000833C0B /* FancyField.swift */,
 				8CB63AA61E89846C00833C0B /* FancyButton.swift */,
+				8CB63AAE1E8A7E1E00833C0B /* CircleView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -285,6 +288,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CB63AAF1E8A7E1E00833C0B /* CircleView.swift in Sources */,
 				8CB63AA51E89834000833C0B /* FancyField.swift in Sources */,
 				8CB63A841E894F3A00833C0B /* SignInVC.swift in Sources */,
 				8CB63AA31E8981B600833C0B /* RoundButton.swift in Sources */,
