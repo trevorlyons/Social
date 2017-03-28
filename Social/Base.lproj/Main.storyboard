@@ -28,7 +28,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EAI-Pq-UhD" customClass="FancyView" customModule="Social" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="140"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Social App" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BcA-YJ-u6C">
                                         <rect key="frame" x="69" y="45" width="237" height="61"/>
@@ -42,12 +42,12 @@
                                 <color key="backgroundColor" red="1" green="0.92156862745098034" blue="0.23137254901960785" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="BcA-YJ-u6C" firstAttribute="centerX" secondItem="EAI-Pq-UhD" secondAttribute="centerX" id="1ej-Ep-LXj"/>
-                                    <constraint firstAttribute="height" constant="150" id="5lo-wo-ACh"/>
+                                    <constraint firstAttribute="height" constant="140" id="5lo-wo-ACh"/>
                                     <constraint firstItem="BcA-YJ-u6C" firstAttribute="centerY" secondItem="EAI-Pq-UhD" secondAttribute="centerY" id="JxQ-Ik-P0p"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ffy-Vt-YHM">
-                                <rect key="frame" x="0.0" y="592" width="375" height="75"/>
+                                <rect key="frame" x="0.0" y="602" width="375" height="65"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="If you haven't signed in before, an account will be automatically created for you." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gyA-FG-Jq3">
                                         <rect key="frame" x="8" y="0.0" width="359" height="67"/>
@@ -62,11 +62,11 @@
                                     <constraint firstItem="gyA-FG-Jq3" firstAttribute="top" secondItem="ffy-Vt-YHM" secondAttribute="top" constant="8" id="7jx-cI-fDO"/>
                                     <constraint firstAttribute="bottom" secondItem="gyA-FG-Jq3" secondAttribute="bottom" constant="8" id="M0E-kW-DAf"/>
                                     <constraint firstItem="gyA-FG-Jq3" firstAttribute="leading" secondItem="ffy-Vt-YHM" secondAttribute="leading" constant="8" id="WNb-fx-QBm"/>
-                                    <constraint firstAttribute="height" constant="75" id="syi-3L-zER"/>
+                                    <constraint firstAttribute="height" constant="65" id="syi-3L-zER"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select a sign in method" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BTx-PN-LtY">
-                                <rect key="frame" x="16" y="170" width="343" height="20"/>
+                                <rect key="frame" x="16" y="160" width="343" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="sOx-3g-WBO"/>
                                 </constraints>
@@ -75,7 +75,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eQt-W2-gMe" customClass="RoundButton" customModule="Social" customModuleProvider="target">
-                                <rect key="frame" x="113" y="210" width="150" height="150"/>
+                                <rect key="frame" x="113" y="190" width="150" height="150"/>
                                 <color key="backgroundColor" red="0.25295305252075195" green="0.36433106660842896" blue="0.57716947793960571" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="08U-ml-agk"/>
@@ -87,7 +87,7 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="6ZA-bR-lqp">
-                                <rect key="frame" x="46" y="390" width="283" height="107"/>
+                                <rect key="frame" x="46" y="360" width="283" height="107"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="G4c-xO-Llt" customClass="FancyField" customModule="Social" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="283" height="25"/>
@@ -99,7 +99,7 @@
                                         <rect key="frame" x="0.0" y="35" width="283" height="25"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.87" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="18"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FB3-nn-2bp" customClass="FancyButton" customModule="Social" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="70" width="283" height="37"/>
@@ -108,6 +108,9 @@
                                         <state key="normal" title="Sign In">
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="signInTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7I0-kF-x6Q"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -127,10 +130,14 @@
                             <constraint firstItem="eQt-W2-gMe" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="bBW-mn-ebZ"/>
                             <constraint firstItem="EAI-Pq-UhD" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="cRg-2p-AWh"/>
                             <constraint firstItem="BTx-PN-LtY" firstAttribute="top" secondItem="EAI-Pq-UhD" secondAttribute="bottom" constant="20" id="oGA-1u-2q7"/>
-                            <constraint firstItem="eQt-W2-gMe" firstAttribute="top" secondItem="BTx-PN-LtY" secondAttribute="bottom" constant="20" id="qDZ-SP-5p6"/>
-                            <constraint firstItem="6ZA-bR-lqp" firstAttribute="top" secondItem="eQt-W2-gMe" secondAttribute="bottom" constant="30" id="xfE-1q-NlT"/>
+                            <constraint firstItem="eQt-W2-gMe" firstAttribute="top" secondItem="BTx-PN-LtY" secondAttribute="bottom" constant="10" id="qDZ-SP-5p6"/>
+                            <constraint firstItem="6ZA-bR-lqp" firstAttribute="top" secondItem="eQt-W2-gMe" secondAttribute="bottom" constant="20" id="xfE-1q-NlT"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="emailField" destination="G4c-xO-Llt" id="aMy-8d-0lB"/>
+                        <outlet property="passwordField" destination="Nnp-mH-H3Q" id="Gfl-8X-g1b"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
