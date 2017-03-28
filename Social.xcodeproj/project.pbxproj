@@ -19,6 +19,7 @@
 		8CB63AA31E8981B600833C0B /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB63AA21E8981B600833C0B /* RoundButton.swift */; };
 		8CB63AA51E89834000833C0B /* FancyField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB63AA41E89834000833C0B /* FancyField.swift */; };
 		8CB63AA71E89846C00833C0B /* FancyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB63AA61E89846C00833C0B /* FancyButton.swift */; };
+		8CB63AAD1E8A6D0700833C0B /* FeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB63AAC1E8A6D0700833C0B /* FeedVC.swift */; };
 		93C4F9BDC88DD007D3817789 /* Pods_Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49264DCB0C970B9E0DAA8601 /* Pods_Social.framework */; };
 /* End PBXBuildFile section */
 
@@ -40,6 +41,7 @@
 		8CB63AA41E89834000833C0B /* FancyField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FancyField.swift; sourceTree = "<group>"; };
 		8CB63AA61E89846C00833C0B /* FancyButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FancyButton.swift; sourceTree = "<group>"; };
 		8CB63AAB1E89AD2100833C0B /* Social.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Social.entitlements; sourceTree = "<group>"; };
+		8CB63AAC1E8A6D0700833C0B /* FeedVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedVC.swift; sourceTree = "<group>"; };
 		BFAA7260216BCC5F799858AA /* Pods-Social.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Social.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Social/Pods-Social.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -122,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				8CB63A831E894F3A00833C0B /* SignInVC.swift */,
+				8CB63AAC1E8A6D0700833C0B /* FeedVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -286,6 +289,7 @@
 				8CB63A841E894F3A00833C0B /* SignInVC.swift in Sources */,
 				8CB63AA31E8981B600833C0B /* RoundButton.swift in Sources */,
 				8CB63AA71E89846C00833C0B /* FancyButton.swift in Sources */,
+				8CB63AAD1E8A6D0700833C0B /* FeedVC.swift in Sources */,
 				8CB63A821E894F3A00833C0B /* AppDelegate.swift in Sources */,
 				8CB63A9D1E897F2300833C0B /* FancyView.swift in Sources */,
 				8CB63AA11E897FE500833C0B /* Constants.swift in Sources */,

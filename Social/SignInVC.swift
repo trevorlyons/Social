@@ -10,6 +10,7 @@ import UIKit
 import FBSDKCoreKit
 import FBSDKLoginKit
 import Firebase
+import SwiftKeychainWrapper
 
 class SignInVC: UIViewController {
 
@@ -18,15 +19,19 @@ class SignInVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+
+        }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        // checking is the id key has already been made so that signin is automatic if already signed up
+        if let _ = KeychainWrapper.standard.string(forKey: KEY_UID) {
+            performSegue(withIdentifier: "goToFeed", sender: nil)
+        }
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
-    // Facebook Login functions
+    // Facebook Login functions - Enable Facebook signin with Firebase and follow developers.facebook.com
     @IBAction func facebookBtnTapped(_ sender: Any) {
         
         let facebookLogin = FBSDKLoginManager()
@@ -51,6 +56,10 @@ class SignInVC: UIViewController {
                 print("TREVOR: Unable to authenticate with Firebase - \(error)")
             } else {
                 print("TREVOR: Successfully authenticated with Firebase")
+                if let user = user {
+                    self.completeSignIn(id: user.uid)
+
+                }
             }
         })
         
@@ -62,17 +71,31 @@ class SignInVC: UIViewController {
             FIRAuth.auth()?.signIn(withEmail: email, password: pwd, completion: { (user, error) in
                 if error == nil {
                     print("TREVOR: Email user authenticated with Firebase")
+                    if let user = user {
+                        self.completeSignIn(id: user.uid)
+                    }
                 } else {
                     FIRAuth.auth()?.createUser(withEmail: email, password: pwd, completion: { (user, error) in
                         if error != nil {
                             print("TREVOR: Unable to authenticate with Firebase using email")
                         } else {
                             print("TREVOR: Successfully authenticated with Firebase")
+                            if let user = user {
+                                self.completeSignIn(id: user.uid)
+                            }
+                            
                         }
                     })
                 }
             })
         }
+    }
+    
+    // function to not repeat keychain code
+    func completeSignIn(id: String) {
+        let keychainReuslt = KeychainWrapper.standard.set(id, forKey: KEY_UID)
+        print("TREVOR: Data saved to Keychain \(keychainReuslt)")
+        performSegue(withIdentifier: "goToFeed", sender: nil)
     }
 }
 
