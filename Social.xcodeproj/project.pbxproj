@@ -23,6 +23,7 @@
 		8CB63AAF1E8A7E1E00833C0B /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB63AAE1E8A7E1E00833C0B /* CircleView.swift */; };
 		8CB63AB11E8AAEEB00833C0B /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB63AB01E8AAEEB00833C0B /* PostCell.swift */; };
 		8CB63AB41E8BAC2800833C0B /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB63AB31E8BAC2800833C0B /* DataService.swift */; };
+		8CB63AB61E8BD53100833C0B /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB63AB51E8BD53100833C0B /* Post.swift */; };
 		93C4F9BDC88DD007D3817789 /* Pods_Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49264DCB0C970B9E0DAA8601 /* Pods_Social.framework */; };
 /* End PBXBuildFile section */
 
@@ -48,6 +49,7 @@
 		8CB63AAE1E8A7E1E00833C0B /* CircleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
 		8CB63AB01E8AAEEB00833C0B /* PostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		8CB63AB31E8BAC2800833C0B /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		8CB63AB51E8BD53100833C0B /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		BFAA7260216BCC5F799858AA /* Pods-Social.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Social.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Social/Pods-Social.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -112,6 +114,7 @@
 		8CB63A951E89527E00833C0B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				8CB63AB51E8BD53100833C0B /* Post.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -305,6 +308,7 @@
 				8CB63AAF1E8A7E1E00833C0B /* CircleView.swift in Sources */,
 				8CB63AA51E89834000833C0B /* FancyField.swift in Sources */,
 				8CB63A841E894F3A00833C0B /* SignInVC.swift in Sources */,
+				8CB63AB61E8BD53100833C0B /* Post.swift in Sources */,
 				8CB63AA31E8981B600833C0B /* RoundButton.swift in Sources */,
 				8CB63AA71E89846C00833C0B /* FancyButton.swift in Sources */,
 				8CB63AB41E8BAC2800833C0B /* DataService.swift in Sources */,
