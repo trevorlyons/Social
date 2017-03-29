@@ -24,8 +24,10 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         DataService.ds.REF_POSTS.observe(.value, with: { (snapshot) in
             
+            // resets posts array to nil so that posts are not repeated
             self.posts = []
             
+            // loop over all objects in database and add to posts array
             if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                 for snap in snapshot {
                     print("SNAP: \(snap)")
@@ -55,9 +57,13 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let post = posts[indexPath.row]
-        print("TREVOR: \(post.caption)")
         
-        return tableView.dequeueReusableCell(withIdentifier: "PostCell") as! PostCell
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell") as? PostCell {
+            cell.configureCell(post: post)
+            return cell
+        } else {
+            return PostCell()
+        }
     }
 
 
