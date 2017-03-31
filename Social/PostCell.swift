@@ -71,6 +71,7 @@ class PostCell: UITableViewCell {
     }
     
     func likeTapped(sender: UITapGestureRecognizer ) {
+        sender.isEnabled = false
         likesRef.observeSingleEvent(of: .value, with: { (snapshot) in
             if let _ = snapshot.value as? NSNull {
                 self.likeImg.image = UIImage(named: "filled-heart")
@@ -81,8 +82,11 @@ class PostCell: UITableViewCell {
                 self.post.adjustLikes(addLike: false)
                 self.likesRef.removeValue()
             }
+            sender.isEnabled = true
         })
+        
     }
+    
 
 
 }

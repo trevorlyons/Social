@@ -15,7 +15,7 @@ class Post {
     private var _imageUrl: String!
     private var _likes: Int!
     private var _postKey: String!
-    private var _postRef: FIRDatabaseReference!
+    static var _postRef: FIRDatabaseReference! // CHANGED TO STATIC
     
     var caption: String {
         return _caption
@@ -25,13 +25,14 @@ class Post {
         return _imageUrl
     }
     
-    var likes: Int! {
+    var likes: Int {
         return _likes
     }
     
     var postKey: String {
         return _postKey
     }
+
     
     
     init(caption: String, imageUrl: String, likes: Int) {
@@ -55,7 +56,7 @@ class Post {
             self._likes = likes
         }
         
-        _postRef = DataService.ds.REF_POSTS.child(_postKey)
+        Post._postRef = DataService.ds.REF_POSTS.child(_postKey) // ADDED POST.
     }
     
     func adjustLikes(addLike: Bool) {
@@ -64,14 +65,12 @@ class Post {
         } else {
             _likes = _likes - 1
         }
-        _postRef.child("likes").setValue(_likes)
+        Post._postRef.child("likes").setValue(_likes) // ADDED POST.
 
     }
     
+    
 }
-
-
-
 
 
 

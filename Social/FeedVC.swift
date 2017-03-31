@@ -20,6 +20,10 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
     var ImagePicker: UIImagePickerController!
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
     var imageSelected = false
+    var post: Post!
+    var deleteRef: FIRDatabaseReference!
+    var currentUser: FIRDatabaseReference!
+    var printUser: String!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +53,8 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
                     }
                 }
             }
+            
+            self.posts.reverse()
             self.tableView.reloadData()
         })
 
@@ -69,6 +75,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
         
         let post = posts[indexPath.row]
         
+        // dequeue cell for cached or download new image
         if let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell") as? PostCell {
             
             if let img = FeedVC.imageCache.object(forKey: post.imageUrl as NSString) {
@@ -160,6 +167,18 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
         tableView.reloadData()
     }
     
+    // DELETE POST FUNC
+    
+    
+    @IBAction func deleteBtnPressed(_ sender: Any) {
+        
+        Post._postRef.removeValue()
+        
+
+        
+        tableView.reloadData()
+    }
+
 }
 
 
