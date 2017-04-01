@@ -252,7 +252,7 @@
                                                     <rect key="frame" x="16" y="8" width="343" height="323"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="jz9-cr-lDL">
-                                                            <rect key="frame" x="8" y="8" width="327" height="277"/>
+                                                            <rect key="frame" x="8" y="8" width="327" height="263"/>
                                                             <subviews>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q1p-Bs-g43">
                                                                     <rect key="frame" x="0.0" y="0.0" width="327" height="60"/>
@@ -280,10 +280,10 @@
                                                                     </subviews>
                                                                 </stackView>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="uLg-dr-lsm">
-                                                                    <rect key="frame" x="0.0" y="68" width="327" height="151"/>
+                                                                    <rect key="frame" x="0.0" y="68" width="327" height="137"/>
                                                                 </imageView>
                                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="rBE-cw-A32">
-                                                                    <rect key="frame" x="0.0" y="227" width="327" height="50"/>
+                                                                    <rect key="frame" x="0.0" y="213" width="327" height="50"/>
                                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="0DX-tM-kFU"/>
@@ -295,31 +295,30 @@
                                                             </subviews>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="hY9-me-tKs">
-                                                            <rect key="frame" x="258.5" y="293" width="76.5" height="22"/>
+                                                            <rect key="frame" x="258.5" y="279" width="76.5" height="36"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Likes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7kN-Bk-udh">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="35.5" height="22"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="35.5" height="36"/>
                                                                     <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
                                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.54045376712328763" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8888" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XnB-eR-WAz">
-                                                                    <rect key="frame" x="40.5" y="0.0" width="36" height="22"/>
+                                                                    <rect key="frame" x="40.5" y="0.0" width="36" height="36"/>
                                                                     <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
                                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.87" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
                                                         </stackView>
-                                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5ZH-xe-2QR">
-                                                            <rect key="frame" x="15" y="282" width="89" height="36"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5ZH-xe-2QR">
+                                                            <rect key="frame" x="8" y="279" width="117" height="36"/>
                                                             <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
-                                                            <state key="normal" title="Delete Post">
+                                                            <state key="normal" title="Delete my post">
                                                                 <color key="titleColor" white="0.0" alpha="0.54000000000000004" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </state>
                                                             <connections>
-                                                                <action selector="deleteBtnPressed:" destination="w5w-5E-n93" eventType="touchUpInside" id="BiF-Mp-wQI"/>
+                                                                <action selector="deletePressed:" destination="zRK-f6-OfO" eventType="touchUpInside" id="2pd-vV-qq5"/>
                                                             </connections>
                                                         </button>
                                                     </subviews>
@@ -328,8 +327,11 @@
                                                         <constraint firstItem="jz9-cr-lDL" firstAttribute="top" secondItem="wI6-rn-pcU" secondAttribute="top" constant="8" id="EYc-wx-YlQ"/>
                                                         <constraint firstAttribute="bottom" secondItem="hY9-me-tKs" secondAttribute="bottom" constant="8" id="JbD-SA-tdr"/>
                                                         <constraint firstItem="hY9-me-tKs" firstAttribute="top" secondItem="jz9-cr-lDL" secondAttribute="bottom" constant="8" id="LCc-cr-Hjp"/>
+                                                        <constraint firstItem="5ZH-xe-2QR" firstAttribute="leading" secondItem="wI6-rn-pcU" secondAttribute="leading" constant="8" id="QgI-TZ-oke"/>
                                                         <constraint firstItem="jz9-cr-lDL" firstAttribute="leading" secondItem="wI6-rn-pcU" secondAttribute="leading" constant="8" id="b0l-4y-V8a"/>
+                                                        <constraint firstItem="5ZH-xe-2QR" firstAttribute="top" secondItem="jz9-cr-lDL" secondAttribute="bottom" constant="8" id="hXZ-e7-d6x"/>
                                                         <constraint firstAttribute="trailing" secondItem="jz9-cr-lDL" secondAttribute="trailing" constant="8" id="jC2-up-M0g"/>
+                                                        <constraint firstAttribute="bottom" secondItem="5ZH-xe-2QR" secondAttribute="bottom" constant="8" id="m0J-IU-dBY"/>
                                                         <constraint firstAttribute="trailing" secondItem="hY9-me-tKs" secondAttribute="trailing" constant="8" id="pQv-uW-G8R"/>
                                                     </constraints>
                                                 </view>
@@ -344,6 +346,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="caption" destination="rBE-cw-A32" id="yGc-ws-bc6"/>
+                                            <outlet property="deleteBtn" destination="5ZH-xe-2QR" id="MRB-qC-TOn"/>
                                             <outlet property="likeImg" destination="gIv-JZ-3fa" id="ew5-Cb-zol"/>
                                             <outlet property="likesLbl" destination="XnB-eR-WAz" id="I7I-zp-9aF"/>
                                             <outlet property="postImg" destination="uLg-dr-lsm" id="dHn-qQ-qRy"/>
@@ -387,7 +390,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="842.39999999999998" y="125.4872563718141"/>
+            <point key="canvasLocation" x="841.5" y="124.5"/>
         </scene>
     </scenes>
     <resources>

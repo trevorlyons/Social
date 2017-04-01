@@ -17,9 +17,12 @@ class PostCell: UITableViewCell {
     @IBOutlet weak var caption: UITextView!
     @IBOutlet weak var likesLbl: UILabel!
     @IBOutlet weak var likeImg: UIImageView!
+    @IBOutlet weak var deleteBtn: UIButton!
     
     var post: Post!
     var likesRef: FIRDatabaseReference!
+    var myPostRef: FIRDatabaseReference!
+    
 
 
     override func awakeFromNib() {
@@ -30,14 +33,20 @@ class PostCell: UITableViewCell {
         likeImg.addGestureRecognizer(tap)
         likeImg.isUserInteractionEnabled = true
         
+        deleteBtn.isHidden = true
+        
+        
+        
     }
     // setting data in post cell
     func configureCell(post: Post, img: UIImage? = nil) {
         self.post = post
         likesRef = DataService.ds.REF_USER_CURRENT.child("likes").child(post.postKey)
+        myPostRef = DataService.ds.REF_USER_CURRENT.child("posts").child(post.postKey)
         
         self.caption.text = post.caption
         self.likesLbl.text = "\(post.likes)"
+        self.myPostRef.setValue(true)
         
         if img != nil {
             self.postImg.image = img
@@ -68,7 +77,18 @@ class PostCell: UITableViewCell {
             }
         })
         
+        // Create single event type to observe if post is by the user. If it is, show option to delete post similar to above
+        myPostRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            if let _ = snapshot.value as? NSNull {
+                self.deleteBtn.isHidden = true
+            } else {
+                self.deleteBtn.isHidden = false
+            }
+        })
+        
     }
+    
+
     
     func likeTapped(sender: UITapGestureRecognizer ) {
         sender.isEnabled = false
@@ -87,6 +107,9 @@ class PostCell: UITableViewCell {
         
     }
     
+    @IBAction func deletePressed(_ sender: Any) {
+    }
+
 
 
 }

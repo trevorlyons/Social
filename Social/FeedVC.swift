@@ -20,10 +20,8 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
     var ImagePicker: UIImagePickerController!
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
     var imageSelected = false
-    var post: Post!
-    var deleteRef: FIRDatabaseReference!
-    var currentUser: FIRDatabaseReference!
-    var printUser: String!
+    
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -154,11 +152,14 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
         let post: Dictionary<String, AnyObject> = [
         "caption": captionField.text! as AnyObject,
         "imageUrl": imgUrl as AnyObject,
-        "likes": 0 as AnyObject
+        "likes": 0 as AnyObject,
         ]
         
         let firebasePost = DataService.ds.REF_POSTS.childByAutoId()
         firebasePost.setValue(post)
+        //self.post = post
+        //DataService.ds.REF_USER_CURRENT.child("posts").child(post.postKey).setValue(true)
+        
         
         captionField.text = ""
         imageSelected = false
@@ -167,17 +168,6 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
         tableView.reloadData()
     }
     
-    // DELETE POST FUNC
-    
-    
-    @IBAction func deleteBtnPressed(_ sender: Any) {
-        
-        Post._postRef.removeValue()
-        
-
-        
-        tableView.reloadData()
-    }
 
 }
 
