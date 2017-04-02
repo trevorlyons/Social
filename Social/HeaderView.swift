@@ -1,14 +1,14 @@
 //
-//  FancyView.swift
+//  HeaderView.swift
 //  Social
 //
-//  Created by Trevor Lyons on 2017-03-27.
+//  Created by Trevor Lyons on 2017-04-02.
 //  Copyright © 2017 Trevor Lyons. All rights reserved.
 //
 
 import UIKit
 
-class FancyView: UIView {
+class HeaderView: UIView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -17,8 +17,8 @@ class FancyView: UIView {
         layer.shadowOpacity = 0.8
         layer.shadowRadius = 5.0
         layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
-        layer.cornerRadius = 20.0
+        layer.cornerRadius = 2.0
     }
-
-
+    
+    
 }

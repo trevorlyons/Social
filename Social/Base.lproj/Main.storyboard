@@ -27,7 +27,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EAI-Pq-UhD" customClass="FancyView" customModule="Social" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EAI-Pq-UhD" customClass="HeaderView" customModule="Social" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="140"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Social App" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BcA-YJ-u6C">
@@ -144,6 +144,50 @@
             </objects>
             <point key="canvasLocation" x="117.59999999999999" y="122.78860569715144"/>
         </scene>
+        <!--Account SetupVC-->
+        <scene sceneID="xrQ-Cq-Rtl">
+            <objects>
+                <viewController id="UKm-DH-LW7" customClass="AccountSetupVC" customModule="Social" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="XIS-ER-l9x"/>
+                        <viewControllerLayoutGuide type="bottom" id="GVN-J7-rfG"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Vs7-fb-bAw">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j9M-X0-09b" customClass="HeaderView" customModule="Social" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="65"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Account Setup" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OJM-c0-Aot">
+                                        <rect key="frame" x="89.5" y="6.5" width="196.5" height="52"/>
+                                        <fontDescription key="fontDescription" name="Albondigas" family="Albondigas" pointSize="51"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                        <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="0.87" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <size key="shadowOffset" width="1" height="1"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.99303108449999999" green="0.92052930590000004" blue="0.31934186819999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="OJM-c0-Aot" firstAttribute="centerX" secondItem="j9M-X0-09b" secondAttribute="centerX" id="BJC-Yl-i0q"/>
+                                    <constraint firstItem="OJM-c0-Aot" firstAttribute="centerY" secondItem="j9M-X0-09b" secondAttribute="centerY" id="Vjo-UB-dCv"/>
+                                    <constraint firstAttribute="height" constant="65" id="mtH-UA-5sK"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="j9M-X0-09b" firstAttribute="leading" secondItem="Vs7-fb-bAw" secondAttribute="leading" id="OLV-ZL-imj"/>
+                            <constraint firstItem="j9M-X0-09b" firstAttribute="top" secondItem="Vs7-fb-bAw" secondAttribute="top" id="Uza-ia-cm4"/>
+                            <constraint firstAttribute="trailing" secondItem="j9M-X0-09b" secondAttribute="trailing" id="weB-LV-CnN"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Tjm-k5-ufP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="896.79999999999995" y="122.78860569715144"/>
+        </scene>
         <!--FeedVC-->
         <scene sceneID="Ank-zJ-Atk">
             <objects>
@@ -156,7 +200,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dyn-sX-4ju" customClass="FancyView" customModule="Social" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dyn-sX-4ju" customClass="HeaderView" customModule="Social" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="65"/>
                                 <subviews>
                                     <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sign-out" translatesAutoresizingMaskIntoConstraints="NO" id="TM6-RS-AyJ">
@@ -390,7 +434,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="841.5" y="124.5"/>
+            <point key="canvasLocation" x="1671" y="123"/>
         </scene>
     </scenes>
     <resources>

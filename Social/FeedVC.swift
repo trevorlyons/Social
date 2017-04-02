@@ -155,12 +155,16 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
         "likes": 0 as AnyObject,
         ]
         
+        // Posting dictionary of new post under an AutoId 
         let firebasePost = DataService.ds.REF_POSTS.childByAutoId()
         firebasePost.setValue(post)
-        //self.post = post
-        //DataService.ds.REF_USER_CURRENT.child("posts").child(post.postKey).setValue(true)
         
         
+        // Adding the post AutoId to the user for ownership of post
+        let addPostToUser = DataService.ds.REF_USER_CURRENT.child("posts").child(firebasePost.key)
+        addPostToUser.setValue(true)
+        
+        // Resetting post fields
         captionField.text = ""
         imageSelected = false
         imageAdd.image = UIImage(named: "add-image")

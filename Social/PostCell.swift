@@ -22,6 +22,7 @@ class PostCell: UITableViewCell {
     var post: Post!
     var likesRef: FIRDatabaseReference!
     var myPostRef: FIRDatabaseReference!
+
     
 
 
@@ -38,16 +39,16 @@ class PostCell: UITableViewCell {
         
         
     }
-    // setting data in post cell
+    // Setting data in post cell
     func configureCell(post: Post, img: UIImage? = nil) {
         self.post = post
         likesRef = DataService.ds.REF_USER_CURRENT.child("likes").child(post.postKey)
         myPostRef = DataService.ds.REF_USER_CURRENT.child("posts").child(post.postKey)
+
         
         self.caption.text = post.caption
         self.likesLbl.text = "\(post.likes)"
-        self.myPostRef.setValue(true)
-        
+
         if img != nil {
             self.postImg.image = img
         } else {
@@ -108,6 +109,14 @@ class PostCell: UITableViewCell {
     }
     
     @IBAction func deletePressed(_ sender: Any) {
+        myPostRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            self.post.deletePost()
+            self.myPostRef.removeValue()
+            self.likesRef.removeValue() // needs to remove from all users
+            
+            
+            
+        })
     }
 
 

@@ -17,7 +17,6 @@ class Post {
     private var _postKey: String!
     private var _postRef: FIRDatabaseReference!
     
-    //static var _deleteRef: FIRDatabaseReference! // CHANGED TO STATIC
     
     var caption: String {
         return _caption
@@ -60,7 +59,6 @@ class Post {
         
         _postRef = DataService.ds.REF_POSTS.child(_postKey)
         
-        //Post._deleteRef = DataService.ds.REF_POSTS.child(FIRAuth.auth()!.currentUser!.uid) //TEST
     }
     
     func adjustLikes(addLike: Bool) {
@@ -73,15 +71,11 @@ class Post {
 
     }
     
-    //func addToUserPosts() {
-    //    DataService.ds.REF_USER_CURRENT.child("posts").child(postKey).setValue(_postKey)
-    //}
-    
-    
-    /*func deletePost() {
+    func deletePost() {
         _postRef.removeValue()
-    }*/
+    }
     
+
     
 }
 
