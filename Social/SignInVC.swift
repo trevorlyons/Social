@@ -100,7 +100,9 @@ class SignInVC: UIViewController {
         
         let keychainReuslt = KeychainWrapper.standard.set(id, forKey: KEY_UID)
         print("TREVOR: Data saved to Keychain \(keychainReuslt)")
-        performSegue(withIdentifier: "goToFeed", sender: nil)
+        
+        // editing segue to account setup
+        performSegue(withIdentifier: "goToAccountSetup", sender: nil)
     }
 }
 
