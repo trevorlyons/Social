@@ -22,6 +22,8 @@ class PostCell: UITableViewCell {
     var post: Post!
     var likesRef: FIRDatabaseReference!
     var myPostRef: FIRDatabaseReference!
+    var profileImgRef: FIRDatabaseReference!
+    var userLblRef: FIRDatabaseReference!
 
     
 
@@ -44,8 +46,10 @@ class PostCell: UITableViewCell {
         self.post = post
         likesRef = DataService.ds.REF_USER_CURRENT.child("likes").child(post.postKey)
         myPostRef = DataService.ds.REF_USER_CURRENT.child("posts").child(post.postKey)
+        profileImgRef = DataService.ds.REF_USER_CURRENT.child("ProfileImgUrl")
+        userLblRef = DataService.ds.REF_USER_CURRENT
 
-        
+        //self.usernameLbl.text = DataService.ds.REF_USER_CURRENT.child("Username".key)
         self.caption.text = post.caption
         self.likesLbl.text = "\(post.likes)"
 
@@ -53,7 +57,7 @@ class PostCell: UITableViewCell {
             self.postImg.image = img
         } else {
             let ref = FIRStorage.storage().reference(forURL: post.imageUrl)
-            ref.data(withMaxSize: 5 * 1024 * 1024, completion: { (data, error) in
+            ref.data(withMaxSize: 2 * 1024 * 1024, completion: { (data, error) in
                 if error != nil {
                     print("TREVOR: Unable to download image from Firebase storage")
                 } else {
@@ -67,6 +71,7 @@ class PostCell: UITableViewCell {
                 }
             
             })
+        
         }
         
 
@@ -84,6 +89,7 @@ class PostCell: UITableViewCell {
                 self.deleteBtn.isHidden = true
             } else {
                 self.deleteBtn.isHidden = false
+                
             }
         })
         
@@ -109,14 +115,10 @@ class PostCell: UITableViewCell {
     }
     
     @IBAction func deletePressed(_ sender: Any) {
-        myPostRef.observeSingleEvent(of: .value, with: { (snapshot) in
-            self.post.deletePost()
-            self.myPostRef.removeValue()
-            self.likesRef.removeValue() // needs to remove from all users
-            
-            
-            
-        })
+        self.post.deletePost()
+        self.myPostRef.removeValue()
+        self.likesRef.removeValue()
+        
     }
 
 

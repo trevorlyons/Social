@@ -7,24 +7,86 @@
 //
 
 import UIKit
+import SwiftKeychainWrapper
+import Firebase
 
-class AccountSetupVC: UIViewController {
+class AccountSetupVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     
     @IBOutlet weak var userName: FancyField!
     @IBOutlet weak var profileImg: CircleView!
     
+    var imagePicker: UIImagePickerController!
+    var imageSelected = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        imagePicker = UIImagePickerController()
+        imagePicker.allowsEditing = true
+        imagePicker.delegate = self
+        
 
 
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
+            profileImg.image = image
+            imageSelected = true
+        } else {
+            print("ACCOUNT SETUP: You need to select an image") // Use hidden label to appear to warn user to attach an image
+        }
+        imagePicker.dismiss(animated: true, completion: nil)
     }
 
 
     @IBAction func attachBtnPressed(_ sender: Any) {
+        present(imagePicker, animated: true, completion: nil)
     }
 
     @IBAction func continueBtnPressed(_ sender: Any) {
+        guard let user = userName.text, user != "" else {
+            print("ACCOUNT SETUP: User name must be entered")
+            return
+        }
+        guard let img = profileImg.image, imageSelected == true else {
+            print("ACCOUNT SETUP: An image must be selected")
+            return
+        }
+        if let imgData = UIImageJPEGRepresentation(img, 0.2) {
+            let imgUid = NSUUID().uuidString // creating a random id for upload images
+            let metadata = FIRStorageMetadata()
+            metadata.contentType = "image/jpeg"
+            
+            DataService.ds.REF_POST_IMAGES.child(imgUid).put(imgData, metadata: metadata) { (metadata, error) in
+                if error != nil {
+                    print("ACCOUNT SETUP: Unable to upload image to Firebase storage")
+                } else {
+                    print("ACCOUNT SETUP: Successfully uploaded image to Firebase storage")
+                    let downloadUrl = metadata?.downloadURL()?.absoluteString
+                    if let url = downloadUrl {
+                        self.postToFirebase(imgUrl: url)
+                    }
+                    
+                }
+                
+                
+            }
+        }
+        performSegue(withIdentifier: "AccountToFeed", sender: nil)
+    }
+    
+    func postToFirebase(imgUrl: String) {
+        let profileUserName = userName.text! as AnyObject
+        let profileImage = imgUrl as AnyObject
+        
+        let addToUser = DataService.ds.REF_USER_CURRENT
+        addToUser.child("Username").setValue(profileUserName)
+        addToUser.child("ProfileImgUrl").setValue(profileImage)
+        
+        
+        
     }
 
 }

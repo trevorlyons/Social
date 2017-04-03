@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -31,7 +31,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="140"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Social App" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BcA-YJ-u6C">
-                                        <rect key="frame" x="84.5" y="35.5" width="206" height="69"/>
+                                        <rect key="frame" x="84.5" y="36" width="206" height="69"/>
                                         <fontDescription key="fontDescription" name="Albondigas" family="Albondigas" pointSize="68"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -161,7 +161,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="65"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Account Setup" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OJM-c0-Aot">
-                                        <rect key="frame" x="89.5" y="7" width="196.5" height="52"/>
+                                        <rect key="frame" x="89.5" y="6.5" width="196.5" height="52"/>
                                         <fontDescription key="fontDescription" name="Albondigas" family="Albondigas" pointSize="51"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -176,11 +176,11 @@
                                     <constraint firstAttribute="height" constant="65" id="mtH-UA-5sK"/>
                                 </constraints>
                             </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="eKV-y6-baI">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="eKV-y6-baI">
                                 <rect key="frame" x="46" y="95" width="283" height="370"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter your post details" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sAL-Yy-ffw">
-                                        <rect key="frame" x="0.0" y="0.0" width="283" height="20.5"/>
+                                        <rect key="frame" x="66" y="0.0" width="151" height="20.5"/>
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.87" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -192,7 +192,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upload a profile image" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3EB-dR-aPr">
-                                        <rect key="frame" x="0.0" y="65.5" width="283" height="20.5"/>
+                                        <rect key="frame" x="64.5" y="65.5" width="154" height="20.5"/>
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.87" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -209,9 +209,10 @@
                                         </connections>
                                     </button>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="raT-St-ImC" customClass="CircleView" customModule="Social" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="143" width="283" height="180"/>
+                                        <rect key="frame" x="51.5" y="143" width="180" height="180"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="180" id="C49-Ux-d65"/>
+                                            <constraint firstAttribute="width" constant="180" id="xue-Dn-dvM"/>
                                         </constraints>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tnL-qV-gPa" customClass="FancyButton" customModule="Social" customModuleProvider="target">
@@ -227,6 +228,14 @@
                                         </connections>
                                     </button>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="tnL-qV-gPa" secondAttribute="trailing" id="AaW-F5-Hse"/>
+                                    <constraint firstItem="tnL-qV-gPa" firstAttribute="leading" secondItem="eKV-y6-baI" secondAttribute="leading" id="Dxw-ua-Daz"/>
+                                    <constraint firstAttribute="trailing" secondItem="Pxv-hx-cKb" secondAttribute="trailing" id="UtU-Es-q4N"/>
+                                    <constraint firstItem="Pxv-hx-cKb" firstAttribute="leading" secondItem="eKV-y6-baI" secondAttribute="leading" id="eBg-rQ-M9g"/>
+                                    <constraint firstAttribute="trailing" secondItem="swC-rU-ieL" secondAttribute="trailing" id="o1y-2N-CJI"/>
+                                    <constraint firstItem="swC-rU-ieL" firstAttribute="leading" secondItem="eKV-y6-baI" secondAttribute="leading" id="rln-pA-NeN"/>
+                                </constraints>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="paF-Gn-czB">
                                 <rect key="frame" x="0.0" y="602" width="375" height="65"/>
@@ -253,6 +262,7 @@
                     <connections>
                         <outlet property="profileImg" destination="raT-St-ImC" id="2Xs-8s-Kux"/>
                         <outlet property="userName" destination="Pxv-hx-cKb" id="WMq-yI-GLi"/>
+                        <segue destination="w5w-5E-n93" kind="show" identifier="AccountToFeed" id="uXk-HD-PtT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tjm-k5-ufP" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -286,7 +296,7 @@
                                         </connections>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Feed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9QM-xL-7o1">
-                                        <rect key="frame" x="159.5" y="13.5" width="56.5" height="52"/>
+                                        <rect key="frame" x="159.5" y="13" width="56.5" height="52"/>
                                         <fontDescription key="fontDescription" name="Albondigas" family="Albondigas" pointSize="51"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -517,4 +527,7 @@
         <image name="profile" width="113" height="155"/>
         <image name="sign-out" width="92" height="65"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="uXk-HD-PtT"/>
+    </inferredMetricsTieBreakers>
 </document>

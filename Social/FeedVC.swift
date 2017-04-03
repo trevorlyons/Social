@@ -20,6 +20,10 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
     var ImagePicker: UIImagePickerController!
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
     var imageSelected = false
+    var userLblRef: FIRDatabaseReference!
+    var userLbl: String!
+    var profilePic: String!
+    var captionSend: String!
     
 
 
@@ -123,6 +127,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
             print("TREVOR: An image must be selected")
             return
         }
+        captionSend = captionField.text
         
         // compression of images uploaded
         if let imgData = UIImageJPEGRepresentation(img, 0.2) {
@@ -139,6 +144,8 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
                     let downloadUrl = metadata?.downloadURL()?.absoluteString
                     if let url = downloadUrl {
                         self.postToFirebase(imgUrl: url)
+                        
+
                     }
                     
                 }
@@ -149,26 +156,46 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
     }
     
     func postToFirebase(imgUrl: String) {
-        let post: Dictionary<String, AnyObject> = [
-        "caption": captionField.text! as AnyObject,
-        "imageUrl": imgUrl as AnyObject,
-        "likes": 0 as AnyObject,
-        ]
         
-        // Posting dictionary of new post under an AutoId 
-        let firebasePost = DataService.ds.REF_POSTS.childByAutoId()
-        firebasePost.setValue(post)
-        
-        
-        // Adding the post AutoId to the user for ownership of post
-        let addPostToUser = DataService.ds.REF_USER_CURRENT.child("posts").child(firebasePost.key)
-        addPostToUser.setValue(true)
-        
+
+       
+        userLblRef = DataService.ds.REF_USER_CURRENT
+        userLblRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if let userDict = snapshot.value as? [String: Any] {
+                self.userLbl = userDict["Username"] as! String
+            }
+            if let profilePics = snapshot.value as? [String: Any] {
+                self.profilePic = profilePics["ProfileImgUrl"] as! String
+            }
+            
+            let post: Dictionary<String, AnyObject> = [
+                "caption": self.captionSend as AnyObject,
+                "imageUrl": imgUrl as AnyObject,
+                "likes": 0 as AnyObject,
+                "profileImgUrl": self.profilePic as AnyObject,
+                "nameLbl": self.userLbl as AnyObject
+            ]
+            
+            // Posting dictionary of new post under an AutoId
+            let firebasePost = DataService.ds.REF_POSTS.childByAutoId()
+            firebasePost.setValue(post)
+            
+            
+            // Adding the post AutoId to the user for ownership of post
+            let addPostToUser = DataService.ds.REF_USER_CURRENT.child("posts").child(firebasePost.key)
+            addPostToUser.setValue(true)
+            
+            
+
+            
+        })
+
         // Resetting post fields
-        captionField.text = ""
-        imageSelected = false
-        imageAdd.image = UIImage(named: "add-image")
-        
+        self.captionField.text = ""
+        self.imageSelected = false
+        self.imageAdd.image = UIImage(named: "add-image")
+
         tableView.reloadData()
     }
     

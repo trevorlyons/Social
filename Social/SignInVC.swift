@@ -24,7 +24,7 @@ class SignInVC: UIViewController {
         }
     
     override func viewDidAppear(_ animated: Bool) {
-        // checking is the id key has already been made so that signin is automatic if already signed up
+        // checking if the id key has already been made so that signin is automatic if already signed up
         if let _ = KeychainWrapper.standard.string(forKey: KEY_UID) {
             performSegue(withIdentifier: "goToFeed", sender: nil)
         }
@@ -84,7 +84,7 @@ class SignInVC: UIViewController {
                             print("TREVOR: Successfully authenticated with Firebase")
                             if let user = user {
                                 let userData = ["provider": user.providerID]
-                                self.completeSignIn(id: user.uid, userData: userData)
+                                self.completeSignInNew(id: user.uid, userData: userData)
                             }
                             
                         }
@@ -101,7 +101,16 @@ class SignInVC: UIViewController {
         let keychainReuslt = KeychainWrapper.standard.set(id, forKey: KEY_UID)
         print("TREVOR: Data saved to Keychain \(keychainReuslt)")
         
-        // editing segue to account setup
+        performSegue(withIdentifier: "goToFeed", sender: nil)
+    }
+    
+    
+    func completeSignInNew(id: String, userData: Dictionary<String, String>) {
+        DataService.ds.createFirebaseDBUser(uid: id, userData: userData)
+        
+        let keychainReuslt = KeychainWrapper.standard.set(id, forKey: KEY_UID)
+        print("TREVOR: Data saved to Keychain \(keychainReuslt)")
+        
         performSegue(withIdentifier: "goToAccountSetup", sender: nil)
     }
 }
