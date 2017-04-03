@@ -22,11 +22,6 @@ class PostCell: UITableViewCell {
     var post: Post!
     var likesRef: FIRDatabaseReference!
     var myPostRef: FIRDatabaseReference!
-    var profileImgRef: FIRDatabaseReference!
-    var userLblRef: FIRDatabaseReference!
-
-    
-
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -42,16 +37,14 @@ class PostCell: UITableViewCell {
         
     }
     // Setting data in post cell
-    func configureCell(post: Post, img: UIImage? = nil) {
+    func configureCell(post: Post, img: UIImage? = nil, img2: UIImage? = nil) {
         self.post = post
         likesRef = DataService.ds.REF_USER_CURRENT.child("likes").child(post.postKey)
         myPostRef = DataService.ds.REF_USER_CURRENT.child("posts").child(post.postKey)
-        profileImgRef = DataService.ds.REF_USER_CURRENT.child("ProfileImgUrl")
-        userLblRef = DataService.ds.REF_USER_CURRENT
 
-        //self.usernameLbl.text = DataService.ds.REF_USER_CURRENT.child("Username".key)
         self.caption.text = post.caption
         self.likesLbl.text = "\(post.likes)"
+        self.usernameLbl.text = post.usernameLbl
 
         if img != nil {
             self.postImg.image = img
@@ -69,10 +62,27 @@ class PostCell: UITableViewCell {
                         }
                     }
                 }
-            
             })
-        
         }
+        if img2 != nil {
+            self.profileImg.image = img2
+        } else {
+            let ref = FIRStorage.storage().reference(forURL: post.profileImg)
+            ref.data(withMaxSize: 2 * 1024 * 1024, completion: { (data, error) in
+                if error != nil {
+                    print("TREVOR: Unable to download image from Firebase storage")
+                } else {
+                    print("TREVOR: Image downloaded from Firebase storage")
+                    if let imgData = data {
+                        if let img2 = UIImage(data: imgData) {
+                            self.profileImg.image = img2
+                            FeedVC.imageCache.setObject(img2, forKey: post.profileImg as NSString)
+                        }
+                    }
+                }
+            })
+        }
+        
         
 
         likesRef.observeSingleEvent(of: .value, with: { (snapshot) in
@@ -83,7 +93,7 @@ class PostCell: UITableViewCell {
             }
         })
         
-        // Create single event type to observe if post is by the user. If it is, show option to delete post similar to above
+        // Create single event type to observe if post is by the user. If it is, show option to delete post
         myPostRef.observeSingleEvent(of: .value, with: { (snapshot) in
             if let _ = snapshot.value as? NSNull {
                 self.deleteBtn.isHidden = true

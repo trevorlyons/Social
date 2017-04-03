@@ -80,8 +80,8 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
         // dequeue cell for cached or download new image
         if let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell") as? PostCell {
             
-            if let img = FeedVC.imageCache.object(forKey: post.imageUrl as NSString) {
-                cell.configureCell(post: post, img: img)
+            if let img = FeedVC.imageCache.object(forKey: post.imageUrl as NSString), let img2 = FeedVC.imageCache.object(forKey: post.profileImg as NSString) {
+                cell.configureCell(post: post, img: img, img2: img2)
                 return cell
             } else {
                 cell.configureCell(post: post)
@@ -157,11 +157,9 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
     
     func postToFirebase(imgUrl: String) {
         
-
-       
         userLblRef = DataService.ds.REF_USER_CURRENT
         userLblRef.observeSingleEvent(of: .value, with: { (snapshot) in
-            
+            // setup if statements if nil/null
             if let userDict = snapshot.value as? [String: Any] {
                 self.userLbl = userDict["Username"] as! String
             }
@@ -185,10 +183,6 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
             // Adding the post AutoId to the user for ownership of post
             let addPostToUser = DataService.ds.REF_USER_CURRENT.child("posts").child(firebasePost.key)
             addPostToUser.setValue(true)
-            
-            
-
-            
         })
 
         // Resetting post fields
