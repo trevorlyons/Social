@@ -24,6 +24,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
     var userLbl: String!
     var profilePic: String!
     var captionSend: String!
+    var test: String!
     
 
 
@@ -36,6 +37,33 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
         ImagePicker = UIImagePickerController()
         ImagePicker.allowsEditing = true
         ImagePicker.delegate = self
+        
+        
+        /*DataService.ds.REF_USER_CURRENT.child("ProfileImgUrl").observeSingleEvent(of: .value, with: { (snapshot) in
+            if let dict = snapshot.value as? String {
+                self.test = dict
+            }
+            
+            let url = URL(string: self.test)!
+            
+            
+            // Allowing images to sync seperately as to not slow down the app
+            DispatchQueue.global().async {
+                do { // do / catch needed incase of image no available to download
+                    let data = try Data(contentsOf: url)
+                    DispatchQueue.global().sync {
+                        self.imageAdd.image = UIImage(data: data)
+                    }
+                    
+                } catch  {
+                    // handle the error here
+                }
+            }
+
+            
+        })*/
+        
+            
         
         
         

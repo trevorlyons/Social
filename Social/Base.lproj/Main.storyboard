@@ -114,6 +114,13 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZSe-TC-oe0">
+                                <rect key="frame" x="291" y="533" width="68" height="61"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="61" id="7wr-EI-iY9"/>
+                                    <constraint firstAttribute="width" constant="68" id="XZY-aX-176"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -125,18 +132,21 @@
                             <constraint firstItem="EAI-Pq-UhD" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="LcI-Nj-dmn"/>
                             <constraint firstItem="BTx-PN-LtY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="NO1-sI-z9y"/>
                             <constraint firstItem="ffy-Vt-YHM" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="P0H-ZC-dCz"/>
+                            <constraint firstItem="ZSe-TC-oe0" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="TdP-uw-YmW"/>
                             <constraint firstItem="BTx-PN-LtY" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="Uwl-Jc-hEu"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="ffy-Vt-YHM" secondAttribute="bottom" id="ZPh-GX-DM6"/>
                             <constraint firstItem="eQt-W2-gMe" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="bBW-mn-ebZ"/>
                             <constraint firstItem="EAI-Pq-UhD" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="cRg-2p-AWh"/>
                             <constraint firstItem="BTx-PN-LtY" firstAttribute="top" secondItem="EAI-Pq-UhD" secondAttribute="bottom" constant="20" id="oGA-1u-2q7"/>
                             <constraint firstItem="eQt-W2-gMe" firstAttribute="top" secondItem="BTx-PN-LtY" secondAttribute="bottom" constant="10" id="qDZ-SP-5p6"/>
+                            <constraint firstItem="ffy-Vt-YHM" firstAttribute="top" secondItem="ZSe-TC-oe0" secondAttribute="bottom" constant="8" id="uJC-pP-kyt"/>
                             <constraint firstItem="6ZA-bR-lqp" firstAttribute="top" secondItem="eQt-W2-gMe" secondAttribute="bottom" constant="20" id="xfE-1q-NlT"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="emailField" destination="G4c-xO-Llt" id="aMy-8d-0lB"/>
                         <outlet property="passwordField" destination="Nnp-mH-H3Q" id="Gfl-8X-g1b"/>
+                        <outlet property="test" destination="ZSe-TC-oe0" id="zFd-L2-pj3"/>
                         <segue destination="w5w-5E-n93" kind="show" identifier="goToFeed" id="Upf-WI-UUP"/>
                         <segue destination="UKm-DH-LW7" kind="show" identifier="goToAccountSetup" id="zZh-sq-KUV"/>
                     </connections>
@@ -528,6 +538,6 @@
         <image name="sign-out" width="92" height="65"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="uXk-HD-PtT"/>
+        <segue reference="Upf-WI-UUP"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -16,10 +16,12 @@ class SignInVC: UIViewController {
 
     @IBOutlet weak var emailField: FancyField!
     @IBOutlet weak var passwordField: FancyField!
+    @IBOutlet weak var test: UIImageView!
     
     var dict: [String: Any]!
     var username: String!
     var profileUrl: String!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -90,11 +92,60 @@ class SignInVC: UIViewController {
                     print("TREVOR: Facebook user dictionary - \(result!)")
                 
                     DataService.ds.REF_USER_CURRENT.child("Username").setValue(self.username!)
-                    DataService.ds.REF_USER_CURRENT.child("ProfileImgUrl").setValue(self.profileUrl)
+                    //DataService.ds.REF_USER_CURRENT.child("ProfileImgUrl").setValue(self.profileUrl)
+                    
+                    
+                    let url = URL(string: self.profileUrl)!
+                
+                    DispatchQueue.global().async {
+                        do {
+                            let data = try Data(contentsOf: url)
+                            DispatchQueue.global().sync {
+                                //self.imageAdd.image = UIImage(data: data)
+                                self.test.image = UIImage(data: data)
+                                let img = self.test.image
+                                
+                                if let imgData = UIImageJPEGRepresentation(img!, 0.2) {
+                                    
+                                    let imgUid = NSUUID().uuidString // creating a random id for upload images
+                                    let metadata = FIRStorageMetadata()
+                                    metadata.contentType = "image/jpeg"
+                                    
+                                    DataService.ds.REF_POST_IMAGES.child(imgUid).put(imgData, metadata: metadata) { (metadata, error) in
+                                        if error != nil {
+                                            print("TREVOR: Unable to upload image to Firebase storage")
+                                        } else {
+                                            print("TREVOR: Successfully uploaded image to Firebase storage")
+                                            let downloadUrl = metadata?.downloadURL()?.absoluteString
+                                            if let url = downloadUrl {
+                                                self.postToFirebase(imgUrl: url)
+                                                
+                                                
+                                            }
+                                            
+                                        }
+                                        
+                                        
+                                    }
+                                }
+                            }
+                            
+                        } catch  {
+                 
+                        }
+                    }
                 }
             })
         }
     }
+    
+    func postToFirebase(imgUrl: String) {
+        let profileImage = imgUrl as AnyObject
+        
+        DataService.ds.REF_USER_CURRENT.child("ProfileImgUrl").setValue(profileImage)
+    }
+    
+    
     
     // Email Sign in - Enable email sign in with Firebase console!
     @IBAction func signInTapped(_ sender: Any) {
