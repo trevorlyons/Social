@@ -160,13 +160,16 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
         userLblRef = DataService.ds.REF_USER_CURRENT
         userLblRef.observeSingleEvent(of: .value, with: { (snapshot) in
             // setup if statements if nil/null
-            if let userDict = snapshot.value as? [String: Any] {
-                self.userLbl = userDict["Username"] as! String
+            if let _ = snapshot.value as? NSNull {
+                print("TREVOR: User magically has no profileImg or nameLbl :/")
+            } else {
+                if let userDict = snapshot.value as? [String: Any] {
+                    self.userLbl = userDict["Username"] as! String
+                }
+                if let profilePics = snapshot.value as? [String: Any] {
+                    self.profilePic = profilePics["ProfileImgUrl"] as! String
+                }
             }
-            if let profilePics = snapshot.value as? [String: Any] {
-                self.profilePic = profilePics["ProfileImgUrl"] as! String
-            }
-            
             let post: Dictionary<String, AnyObject> = [
                 "caption": self.captionSend as AnyObject,
                 "imageUrl": imgUrl as AnyObject,

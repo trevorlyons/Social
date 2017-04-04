@@ -22,6 +22,7 @@ class PostCell: UITableViewCell {
     var post: Post!
     var likesRef: FIRDatabaseReference!
     var myPostRef: FIRDatabaseReference!
+    var test: String!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -32,8 +33,6 @@ class PostCell: UITableViewCell {
         likeImg.isUserInteractionEnabled = true
         
         deleteBtn.isHidden = true
-        
-        
         
     }
     // Setting data in post cell
@@ -81,6 +80,9 @@ class PostCell: UITableViewCell {
                     }
                 }
             })
+            
+
+            
         }
         
         

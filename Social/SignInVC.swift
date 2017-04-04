@@ -17,6 +17,10 @@ class SignInVC: UIViewController {
     @IBOutlet weak var emailField: FancyField!
     @IBOutlet weak var passwordField: FancyField!
     
+    var dict: [String: Any]!
+    var username: String!
+    var profileUrl: String!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -45,6 +49,9 @@ class SignInVC: UIViewController {
                 print("TREVOR: Successfully authenticated with Facebook")
                 let credential = FIRFacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
                 self.firebaseAuth(credential)
+                
+                // pass user data to users tree
+                
             }
         }
         
@@ -59,11 +66,34 @@ class SignInVC: UIViewController {
                 if let user = user {
                     let userData = ["provider": credential.provider]
                     self.completeSignIn(id: user.uid, userData: userData)
-
+                    self.getFBUserData()
                 }
             }
         })
         
+    }
+    
+    func getFBUserData(){
+        if((FBSDKAccessToken.current()) != nil){
+            FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, picture.type(large), email"]).start(completionHandler: { (connection, result, error) -> Void in
+                if (error == nil){
+                    if let fbDict = result as? [String : Any] {
+                        self.username = fbDict["name"] as! String
+                    }
+                    if let dict = result as? [String: Any] {
+                        if let picture = dict["picture"] as? [String: Any] {
+                            if let data = picture["data"] as? [String: Any] {
+                                self.profileUrl = data["url"] as! String
+                            }
+                        }
+                    }
+                    print("TREVOR: Facebook user dictionary - \(result!)")
+                
+                    DataService.ds.REF_USER_CURRENT.child("Username").setValue(self.username!)
+                    DataService.ds.REF_USER_CURRENT.child("ProfileImgUrl").setValue(self.profileUrl)
+                }
+            })
+        }
     }
     
     // Email Sign in - Enable email sign in with Firebase console!
