@@ -52,8 +52,6 @@ class SignInVC: UIViewController {
                 let credential = FIRFacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
                 self.firebaseAuth(credential)
                 
-                // pass user data to users tree
-                
             }
         }
         
@@ -92,58 +90,76 @@ class SignInVC: UIViewController {
                     print("TREVOR: Facebook user dictionary - \(result!)")
                 
                     DataService.ds.REF_USER_CURRENT.child("Username").setValue(self.username!)
-                    //DataService.ds.REF_USER_CURRENT.child("ProfileImgUrl").setValue(self.profileUrl)
                     
-                    
-                    let url = URL(string: self.profileUrl)!
-                
-                    DispatchQueue.global().async {
-                        do {
-                            let data = try Data(contentsOf: url)
-                            DispatchQueue.global().sync {
-                                //self.imageAdd.image = UIImage(data: data)
-                                self.test.image = UIImage(data: data)
-                                let img = self.test.image
-                                
-                                if let imgData = UIImageJPEGRepresentation(img!, 0.2) {
-                                    
-                                    let imgUid = NSUUID().uuidString // creating a random id for upload images
-                                    let metadata = FIRStorageMetadata()
-                                    metadata.contentType = "image/jpeg"
-                                    
-                                    DataService.ds.REF_POST_IMAGES.child(imgUid).put(imgData, metadata: metadata) { (metadata, error) in
-                                        if error != nil {
-                                            print("TREVOR: Unable to upload image to Firebase storage")
-                                        } else {
-                                            print("TREVOR: Successfully uploaded image to Firebase storage")
-                                            let downloadUrl = metadata?.downloadURL()?.absoluteString
-                                            if let url = downloadUrl {
-                                                self.postToFirebase(imgUrl: url)
-                                                
-                                                
-                                            }
-                                            
-                                        }
-                                        
-                                        
-                                    }
-                                }
-                            }
-                            
-                        } catch  {
-                 
-                        }
-                    }
+                    self.downloadFacebookProfileImg()
                 }
             })
         }
     }
+    
+    
+    
+    func downloadFacebookProfileImg() {
+        
+        let url = URL(string: self.profileUrl)!
+        
+        DispatchQueue.global().async {
+            do {
+                let data = try Data(contentsOf: url)
+                DispatchQueue.global().sync {
+                    //self.imageAdd.image = UIImage(data: data)
+                    self.test.image = UIImage(data: data)
+                    self.uploadFacebookProfileImgFirebase()
+                }
+                
+            } catch  {
+                
+            }
+        }
+        
+    }
+    
+    
+    
+    func uploadFacebookProfileImgFirebase() {
+        
+        let img = self.test.image
+        
+        if let imgData = UIImageJPEGRepresentation(img!, 0.2) {
+            
+            let imgUid = NSUUID().uuidString // creating a random id for upload images
+            let metadata = FIRStorageMetadata()
+            metadata.contentType = "image/jpeg"
+            
+            DataService.ds.REF_POST_IMAGES.child(imgUid).put(imgData, metadata: metadata) { (metadata, error) in
+                if error != nil {
+                    print("TREVOR: Unable to upload image to Firebase storage")
+                } else {
+                    print("TREVOR: Successfully uploaded image to Firebase storage")
+                    let downloadUrl = metadata?.downloadURL()?.absoluteString
+                    if let url = downloadUrl {
+                        self.postToFirebase(imgUrl: url)
+                        
+                        
+                    }
+                    
+                }
+                
+                
+            }
+        }
+        
+    }
+    
+    
     
     func postToFirebase(imgUrl: String) {
         let profileImage = imgUrl as AnyObject
         
         DataService.ds.REF_USER_CURRENT.child("ProfileImgUrl").setValue(profileImage)
     }
+    
+    
     
     
     
@@ -174,6 +190,8 @@ class SignInVC: UIViewController {
             })
         }
     }
+    
+    
     
     // function to not repeat keychain code
     func completeSignIn(id: String, userData: Dictionary<String, String>) {

@@ -65,9 +65,6 @@ class PostCell: UITableViewCell {
         if img2 != nil {
             self.profileImg.image = img2
         } else {
-            
-            // listen to the type of post, display based on provider
-            
             let ref = FIRStorage.storage().reference(forURL: post.profileImg)
             ref.data(withMaxSize: 2 * 1024 * 1024, completion: { (data, error) in
                 if error != nil {
@@ -82,9 +79,6 @@ class PostCell: UITableViewCell {
                     }
                 }
             })
-            
-
-            
         }
         
         
