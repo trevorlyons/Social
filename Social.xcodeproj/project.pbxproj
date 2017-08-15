@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8C2A2E591E94F04300537575 /* CommentsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2A2E581E94F04300537575 /* CommentsVC.swift */; };
+		8C9D296A1F3F407C00C95BC7 /* EmailSignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9D29691F3F407C00C95BC7 /* EmailSignInVC.swift */; };
+		8C9D296C1F41A29800C95BC7 /* RoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9D296B1F41A29800C95BC7 /* RoundView.swift */; };
+		8C9D296E1F4305DB00C95BC7 /* RoundedCnrView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9D296D1F4305DB00C95BC7 /* RoundedCnrView.swift */; };
+		8C9D29701F43165D00C95BC7 /* StackViewColours.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9D296F1F43165D00C95BC7 /* StackViewColours.swift */; };
+		8C9D29721F43333C00C95BC7 /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9D29711F43333C00C95BC7 /* ShadowView.swift */; };
+		8C9D29741F43471800C95BC7 /* addPostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9D29731F43471800C95BC7 /* addPostVC.swift */; };
 		8CB63A821E894F3A00833C0B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB63A811E894F3A00833C0B /* AppDelegate.swift */; };
 		8CB63A841E894F3A00833C0B /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB63A831E894F3A00833C0B /* SignInVC.swift */; };
 		8CB63A871E894F3A00833C0B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CB63A851E894F3A00833C0B /* Main.storyboard */; };
@@ -32,6 +39,13 @@
 /* Begin PBXFileReference section */
 		1D7E849D5D543D079B7D1F4B /* Pods-Social.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Social.release.xcconfig"; path = "Pods/Target Support Files/Pods-Social/Pods-Social.release.xcconfig"; sourceTree = "<group>"; };
 		49264DCB0C970B9E0DAA8601 /* Pods_Social.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Social.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C2A2E581E94F04300537575 /* CommentsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsVC.swift; sourceTree = "<group>"; };
+		8C9D29691F3F407C00C95BC7 /* EmailSignInVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailSignInVC.swift; sourceTree = "<group>"; };
+		8C9D296B1F41A29800C95BC7 /* RoundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundView.swift; sourceTree = "<group>"; };
+		8C9D296D1F4305DB00C95BC7 /* RoundedCnrView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedCnrView.swift; sourceTree = "<group>"; };
+		8C9D296F1F43165D00C95BC7 /* StackViewColours.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackViewColours.swift; sourceTree = "<group>"; };
+		8C9D29711F43333C00C95BC7 /* ShadowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
+		8C9D29731F43471800C95BC7 /* addPostVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addPostVC.swift; sourceTree = "<group>"; };
 		8CB63A7E1E894F3A00833C0B /* Social.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Social.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CB63A811E894F3A00833C0B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8CB63A831E894F3A00833C0B /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
@@ -128,11 +142,15 @@
 			children = (
 				8CB63AB71E91014500833C0B /* HeaderView.swift */,
 				8CB63A9C1E897F2300833C0B /* FancyView.swift */,
+				8C9D296B1F41A29800C95BC7 /* RoundView.swift */,
+				8C9D296D1F4305DB00C95BC7 /* RoundedCnrView.swift */,
 				8CB63AA21E8981B600833C0B /* RoundButton.swift */,
 				8CB63AA41E89834000833C0B /* FancyField.swift */,
 				8CB63AA61E89846C00833C0B /* FancyButton.swift */,
 				8CB63AAE1E8A7E1E00833C0B /* CircleView.swift */,
 				8CB63AB01E8AAEEB00833C0B /* PostCell.swift */,
+				8C9D296F1F43165D00C95BC7 /* StackViewColours.swift */,
+				8C9D29711F43333C00C95BC7 /* ShadowView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -141,8 +159,11 @@
 			isa = PBXGroup;
 			children = (
 				8CB63A831E894F3A00833C0B /* SignInVC.swift */,
+				8C9D29691F3F407C00C95BC7 /* EmailSignInVC.swift */,
 				8CB63AB91E91025700833C0B /* AccountSetupVC.swift */,
 				8CB63AAC1E8A6D0700833C0B /* FeedVC.swift */,
+				8C2A2E581E94F04300537575 /* CommentsVC.swift */,
+				8C9D29731F43471800C95BC7 /* addPostVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -314,17 +335,24 @@
 				8CB63AAF1E8A7E1E00833C0B /* CircleView.swift in Sources */,
 				8CB63AA51E89834000833C0B /* FancyField.swift in Sources */,
 				8CB63A841E894F3A00833C0B /* SignInVC.swift in Sources */,
+				8C9D296C1F41A29800C95BC7 /* RoundView.swift in Sources */,
+				8C9D29721F43333C00C95BC7 /* ShadowView.swift in Sources */,
 				8CB63AB61E8BD53100833C0B /* Post.swift in Sources */,
 				8CB63ABA1E91025700833C0B /* AccountSetupVC.swift in Sources */,
 				8CB63AA31E8981B600833C0B /* RoundButton.swift in Sources */,
 				8CB63AA71E89846C00833C0B /* FancyButton.swift in Sources */,
+				8C9D296E1F4305DB00C95BC7 /* RoundedCnrView.swift in Sources */,
+				8C9D296A1F3F407C00C95BC7 /* EmailSignInVC.swift in Sources */,
 				8CB63AB41E8BAC2800833C0B /* DataService.swift in Sources */,
 				8CB63AAD1E8A6D0700833C0B /* FeedVC.swift in Sources */,
+				8C9D29741F43471800C95BC7 /* addPostVC.swift in Sources */,
 				8CB63A821E894F3A00833C0B /* AppDelegate.swift in Sources */,
 				8CB63A9D1E897F2300833C0B /* FancyView.swift in Sources */,
+				8C9D29701F43165D00C95BC7 /* StackViewColours.swift in Sources */,
 				8CB63AA11E897FE500833C0B /* Constants.swift in Sources */,
 				8CB63AB11E8AAEEB00833C0B /* PostCell.swift in Sources */,
 				8CB63AB81E91014500833C0B /* HeaderView.swift in Sources */,
+				8C2A2E591E94F04300537575 /* CommentsVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

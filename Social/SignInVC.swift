@@ -12,11 +12,11 @@ import FBSDKLoginKit
 import Firebase
 import SwiftKeychainWrapper
 
-class SignInVC: UIViewController {
+class SignInVC: UIViewController, UIPopoverPresentationControllerDelegate, SignInProtocol {
 
-    @IBOutlet weak var emailField: FancyField!
-    @IBOutlet weak var passwordField: FancyField!
     @IBOutlet weak var test: UIImageView!
+    @IBOutlet weak var EmailBtn: CircleView!
+
     
     var dict: [String: Any]!
     var username: String!
@@ -30,16 +30,51 @@ class SignInVC: UIViewController {
         }
     
     override func viewDidAppear(_ animated: Bool) {
+        
         // checking if the id key has already been made so that signin is automatic if already signed up
+        
         if let _ = KeychainWrapper.standard.string(forKey: KEY_UID) {
             performSegue(withIdentifier: "goToFeed", sender: nil)
         }
     }
-
+    
+    
+    // Segue functions
+    
+    func popoverPresentationControllerShouldDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) -> Bool {
+        return false
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let controller = segue.destination as? EmailSignInVC {
+            controller.preferredContentSize = CGSize(width: 300, height: 300)
+            controller.signInDelegate = self
+            let popoverController = controller.popoverPresentationController
+            if popoverController != nil {
+                popoverController!.delegate = self
+                popoverController!.sourceView = EmailBtn
+                popoverController!.sourceRect = EmailBtn.bounds
+            }
+        }
+        if let controller = segue.destination as? AccountSetupVC {
+            controller.preferredContentSize = CGSize(width: 300, height: 330)
+            let popoverController = controller.popoverPresentationController
+            if popoverController != nil {
+                popoverController!.delegate = self
+                popoverController!.sourceView = EmailBtn
+                popoverController!.sourceRect = EmailBtn.bounds
+            }
+        }
+    }
+    
+    func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
+        return .none
+    }
+    
     
     // Facebook Login functions - Enable Facebook signin with Firebase and follow developers.facebook.com
-    @IBAction func facebookBtnTapped(_ sender: Any) {
-        
+    
+    @IBAction func facebookViewTapped(_ sender: UITapGestureRecognizer) {
         let facebookLogin = FBSDKLoginManager()
         
         facebookLogin.logIn(withReadPermissions: ["email"], from: self) { (result, error) in
@@ -55,6 +90,10 @@ class SignInVC: UIViewController {
             }
         }
         
+    }
+
+    @IBAction func emailViewTapped(_ sender: UITapGestureRecognizer) {
+        performSegue(withIdentifier: "emailLogin", sender: self)
     }
     
     func firebaseAuth(_ credential: FIRAuthCredential) {
@@ -111,12 +150,10 @@ class SignInVC: UIViewController {
                     self.test.image = UIImage(data: data)
                     self.uploadFacebookProfileImgFirebase()
                 }
-                
             } catch  {
                 
             }
         }
-        
     }
     
     
@@ -139,16 +176,10 @@ class SignInVC: UIViewController {
                     let downloadUrl = metadata?.downloadURL()?.absoluteString
                     if let url = downloadUrl {
                         self.postToFirebase(imgUrl: url)
-                        
-                        
                     }
-                    
                 }
-                
-                
             }
         }
-        
     }
     
     
@@ -158,58 +189,24 @@ class SignInVC: UIViewController {
         
         DataService.ds.REF_USER_CURRENT.child("ProfileImgUrl").setValue(profileImage)
     }
-    
-    
-    
-    
-    
-    // Email Sign in - Enable email sign in with Firebase console!
-    @IBAction func signInTapped(_ sender: Any) {
-        if let email = emailField.text, let pwd = passwordField.text {
-            FIRAuth.auth()?.signIn(withEmail: email, password: pwd, completion: { (user, error) in
-                if error == nil {
-                    print("TREVOR: Email user authenticated with Firebase")
-                    if let user = user {
-                        let userData = ["provider": user.providerID]
-                        self.completeSignIn(id: user.uid, userData: userData)
-                    }
-                } else {
-                    FIRAuth.auth()?.createUser(withEmail: email, password: pwd, completion: { (user, error) in
-                        if error != nil {
-                            print("TREVOR: Unable to authenticate with Firebase using email")
-                        } else {
-                            print("TREVOR: Successfully authenticated with Firebase")
-                            if let user = user {
-                                let userData = ["provider": user.providerID]
-                                self.completeSignInNew(id: user.uid, userData: userData)
-                            }
-                            
-                        }
-                    })
-                }
-            })
-        }
-    }
+
     
     
     
     // function to not repeat keychain code
     func completeSignIn(id: String, userData: Dictionary<String, String>) {
         DataService.ds.createFirebaseDBUser(uid: id, userData: userData)
-        
         let keychainReuslt = KeychainWrapper.standard.set(id, forKey: KEY_UID)
         print("TREVOR: Data saved to Keychain \(keychainReuslt)")
-        
         performSegue(withIdentifier: "goToFeed", sender: nil)
     }
     
     
     func completeSignInNew(id: String, userData: Dictionary<String, String>) {
         DataService.ds.createFirebaseDBUser(uid: id, userData: userData)
-        
         let keychainReuslt = KeychainWrapper.standard.set(id, forKey: KEY_UID)
         print("TREVOR: Data saved to Keychain \(keychainReuslt)")
-        
+        dismiss(animated: true, completion: nil)
         performSegue(withIdentifier: "goToAccountSetup", sender: nil)
     }
 }

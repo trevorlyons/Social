@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class PostCell: UITableViewCell {
+class PostCell: UITableViewCell, UIPopoverPresentationControllerDelegate {
     
     @IBOutlet weak var profileImg: UIImageView!
     @IBOutlet weak var usernameLbl: UILabel!
@@ -17,7 +17,7 @@ class PostCell: UITableViewCell {
     @IBOutlet weak var caption: UITextView!
     @IBOutlet weak var likesLbl: UILabel!
     @IBOutlet weak var likeImg: UIImageView!
-    @IBOutlet weak var deleteBtn: UIButton!
+    @IBOutlet weak var deleteBtn: UIImageView!
     
     var post: Post!
     var likesRef: FIRDatabaseReference!
@@ -85,9 +85,9 @@ class PostCell: UITableViewCell {
 
         likesRef.observeSingleEvent(of: .value, with: { (snapshot) in
             if let _ = snapshot.value as? NSNull {
-                self.likeImg.image = UIImage(named: "empty-heart")
+                self.likeImg.image = UIImage(named: "uncheckedHeart")
             } else {
-                self.likeImg.image = UIImage(named: "filled-heart")
+                self.likeImg.image = UIImage(named: "checkedHeart")
             }
         })
         
@@ -109,11 +109,11 @@ class PostCell: UITableViewCell {
         sender.isEnabled = false
         likesRef.observeSingleEvent(of: .value, with: { (snapshot) in
             if let _ = snapshot.value as? NSNull {
-                self.likeImg.image = UIImage(named: "filled-heart")
+                self.likeImg.image = UIImage(named: "checkedHeart")
                 self.post.adjustLikes(addLike: true)
                 self.likesRef.setValue(true)
             } else {
-                self.likeImg.image = UIImage(named: "empty-heart")
+                self.likeImg.image = UIImage(named: "uncheckedHeart")
                 self.post.adjustLikes(addLike: false)
                 self.likesRef.removeValue()
             }
@@ -128,6 +128,8 @@ class PostCell: UITableViewCell {
         self.likesRef.removeValue()
         
     }
+    
+    
 
 
 
