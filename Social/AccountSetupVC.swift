@@ -26,9 +26,6 @@ class AccountSetupVC: UIViewController, UIImagePickerControllerDelegate, UINavig
         imagePicker = UIImagePickerController()
         imagePicker.allowsEditing = true
         imagePicker.delegate = self
-        
-
-
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {

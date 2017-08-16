@@ -11,9 +11,11 @@
 		8C9D296A1F3F407C00C95BC7 /* EmailSignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9D29691F3F407C00C95BC7 /* EmailSignInVC.swift */; };
 		8C9D296C1F41A29800C95BC7 /* RoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9D296B1F41A29800C95BC7 /* RoundView.swift */; };
 		8C9D296E1F4305DB00C95BC7 /* RoundedCnrView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9D296D1F4305DB00C95BC7 /* RoundedCnrView.swift */; };
-		8C9D29701F43165D00C95BC7 /* StackViewColours.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9D296F1F43165D00C95BC7 /* StackViewColours.swift */; };
 		8C9D29721F43333C00C95BC7 /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9D29711F43333C00C95BC7 /* ShadowView.swift */; };
 		8C9D29741F43471800C95BC7 /* addPostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9D29731F43471800C95BC7 /* addPostVC.swift */; };
+		8C9D29761F442D9D00C95BC7 /* UserProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9D29751F442D9D00C95BC7 /* UserProfileVC.swift */; };
+		8C9D297A1F443EB100C95BC7 /* TextViewStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9D29791F443EB100C95BC7 /* TextViewStyle.swift */; };
+		8C9D297C1F4457D300C95BC7 /* RoundedCnrImg.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9D297B1F4457D300C95BC7 /* RoundedCnrImg.swift */; };
 		8CB63A821E894F3A00833C0B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB63A811E894F3A00833C0B /* AppDelegate.swift */; };
 		8CB63A841E894F3A00833C0B /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB63A831E894F3A00833C0B /* SignInVC.swift */; };
 		8CB63A871E894F3A00833C0B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CB63A851E894F3A00833C0B /* Main.storyboard */; };
@@ -43,9 +45,11 @@
 		8C9D29691F3F407C00C95BC7 /* EmailSignInVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailSignInVC.swift; sourceTree = "<group>"; };
 		8C9D296B1F41A29800C95BC7 /* RoundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundView.swift; sourceTree = "<group>"; };
 		8C9D296D1F4305DB00C95BC7 /* RoundedCnrView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedCnrView.swift; sourceTree = "<group>"; };
-		8C9D296F1F43165D00C95BC7 /* StackViewColours.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackViewColours.swift; sourceTree = "<group>"; };
 		8C9D29711F43333C00C95BC7 /* ShadowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
 		8C9D29731F43471800C95BC7 /* addPostVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addPostVC.swift; sourceTree = "<group>"; };
+		8C9D29751F442D9D00C95BC7 /* UserProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileVC.swift; sourceTree = "<group>"; };
+		8C9D29791F443EB100C95BC7 /* TextViewStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextViewStyle.swift; sourceTree = "<group>"; };
+		8C9D297B1F4457D300C95BC7 /* RoundedCnrImg.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedCnrImg.swift; sourceTree = "<group>"; };
 		8CB63A7E1E894F3A00833C0B /* Social.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Social.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CB63A811E894F3A00833C0B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8CB63A831E894F3A00833C0B /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
@@ -148,9 +152,10 @@
 				8CB63AA41E89834000833C0B /* FancyField.swift */,
 				8CB63AA61E89846C00833C0B /* FancyButton.swift */,
 				8CB63AAE1E8A7E1E00833C0B /* CircleView.swift */,
+				8C9D297B1F4457D300C95BC7 /* RoundedCnrImg.swift */,
 				8CB63AB01E8AAEEB00833C0B /* PostCell.swift */,
-				8C9D296F1F43165D00C95BC7 /* StackViewColours.swift */,
 				8C9D29711F43333C00C95BC7 /* ShadowView.swift */,
+				8C9D29791F443EB100C95BC7 /* TextViewStyle.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -164,6 +169,7 @@
 				8CB63AAC1E8A6D0700833C0B /* FeedVC.swift */,
 				8C2A2E581E94F04300537575 /* CommentsVC.swift */,
 				8C9D29731F43471800C95BC7 /* addPostVC.swift */,
+				8C9D29751F442D9D00C95BC7 /* UserProfileVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -334,6 +340,7 @@
 			files = (
 				8CB63AAF1E8A7E1E00833C0B /* CircleView.swift in Sources */,
 				8CB63AA51E89834000833C0B /* FancyField.swift in Sources */,
+				8C9D29761F442D9D00C95BC7 /* UserProfileVC.swift in Sources */,
 				8CB63A841E894F3A00833C0B /* SignInVC.swift in Sources */,
 				8C9D296C1F41A29800C95BC7 /* RoundView.swift in Sources */,
 				8C9D29721F43333C00C95BC7 /* ShadowView.swift in Sources */,
@@ -344,13 +351,14 @@
 				8C9D296E1F4305DB00C95BC7 /* RoundedCnrView.swift in Sources */,
 				8C9D296A1F3F407C00C95BC7 /* EmailSignInVC.swift in Sources */,
 				8CB63AB41E8BAC2800833C0B /* DataService.swift in Sources */,
+				8C9D297A1F443EB100C95BC7 /* TextViewStyle.swift in Sources */,
 				8CB63AAD1E8A6D0700833C0B /* FeedVC.swift in Sources */,
 				8C9D29741F43471800C95BC7 /* addPostVC.swift in Sources */,
 				8CB63A821E894F3A00833C0B /* AppDelegate.swift in Sources */,
 				8CB63A9D1E897F2300833C0B /* FancyView.swift in Sources */,
-				8C9D29701F43165D00C95BC7 /* StackViewColours.swift in Sources */,
 				8CB63AA11E897FE500833C0B /* Constants.swift in Sources */,
 				8CB63AB11E8AAEEB00833C0B /* PostCell.swift in Sources */,
+				8C9D297C1F4457D300C95BC7 /* RoundedCnrImg.swift in Sources */,
 				8CB63AB81E91014500833C0B /* HeaderView.swift in Sources */,
 				8C2A2E591E94F04300537575 /* CommentsVC.swift in Sources */,
 			);

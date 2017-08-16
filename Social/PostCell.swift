@@ -17,7 +17,8 @@ class PostCell: UITableViewCell, UIPopoverPresentationControllerDelegate {
     @IBOutlet weak var caption: UITextView!
     @IBOutlet weak var likesLbl: UILabel!
     @IBOutlet weak var likeImg: UIImageView!
-    @IBOutlet weak var deleteBtn: UIImageView!
+    @IBOutlet weak var deleteBtn: UIButton!
+
     
     var post: Post!
     var likesRef: FIRDatabaseReference!
@@ -129,6 +130,8 @@ class PostCell: UITableViewCell, UIPopoverPresentationControllerDelegate {
         
     }
     
+    @IBAction func commentsPressed(_ sender: Any) {
+    }
     
 
 
