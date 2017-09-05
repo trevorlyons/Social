@@ -79,7 +79,7 @@ class SignInVC: UIViewController, UIPopoverPresentationControllerDelegate, SignI
         
         facebookLogin.logIn(withReadPermissions: ["email"], from: self) { (result, error) in
             if error != nil {
-                print("TREVOR: Unable to authenticate with Facebook - \(error)")
+                print("TREVOR: Unable to authenticate with Facebook - \(String(describing: error))")
             } else if result?.isCancelled == true {
                 print("TREVOR: User cancelled Facebook authentication")
             } else {
@@ -99,7 +99,7 @@ class SignInVC: UIViewController, UIPopoverPresentationControllerDelegate, SignI
     func firebaseAuth(_ credential: FIRAuthCredential) {
         FIRAuth.auth()?.signIn(with: credential, completion: { (user, error) in
             if error != nil {
-                print("TREVOR: Unable to authenticate with Firebase - \(error)")
+                print("TREVOR: Unable to authenticate with Firebase - \(String(describing: error))")
             } else {
                 print("TREVOR: Successfully authenticated with Firebase")
                 if let user = user {
@@ -209,5 +209,7 @@ class SignInVC: UIViewController, UIPopoverPresentationControllerDelegate, SignI
         dismiss(animated: true, completion: nil)
         performSegue(withIdentifier: "goToAccountSetup", sender: nil)
     }
+    
+    @IBAction func unwindToSignInVC(segue: UIStoryboardSegue) {}
 }
 

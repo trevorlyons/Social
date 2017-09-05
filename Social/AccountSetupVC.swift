@@ -12,8 +12,6 @@ import Firebase
 
 class AccountSetupVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-    
-
     @IBOutlet weak var userName: UITextField!
     @IBOutlet weak var profileImg: CircleView!
     
@@ -42,10 +40,6 @@ class AccountSetupVC: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBAction func camaraBtnPressed(_ sender: UITapGestureRecognizer) {
         present(imagePicker, animated: true, completion: nil)
     }
-
-//    @IBAction func attachBtnPressed(_ sender: Any) {
-//        present(imagePicker, animated: true, completion: nil)
-//    }
 
     @IBAction func loginBtnPressed(_ sender: UITapGestureRecognizer) {
         guard let user = userName.text, user != "" else {
@@ -78,39 +72,6 @@ class AccountSetupVC: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
         performSegue(withIdentifier: "AccountToFeed", sender: nil)
     }
-    
-    
-//    @IBAction func continueBtnPressed(_ sender: Any) {
-//        guard let user = userName.text, user != "" else {
-//            print("ACCOUNT SETUP: User name must be entered")
-//            return
-//        }
-//        guard let img = profileImg.image, imageSelected == true else {
-//            print("ACCOUNT SETUP: An image must be selected")
-//            return
-//        }
-//        if let imgData = UIImageJPEGRepresentation(img, 0.2) {
-//            let imgUid = NSUUID().uuidString // creating a random id for upload images
-//            let metadata = FIRStorageMetadata()
-//            metadata.contentType = "image/jpeg"
-//            
-//            DataService.ds.REF_POST_IMAGES.child(imgUid).put(imgData, metadata: metadata) { (metadata, error) in
-//                if error != nil {
-//                    print("ACCOUNT SETUP: Unable to upload image to Firebase storage")
-//                } else {
-//                    print("ACCOUNT SETUP: Successfully uploaded image to Firebase storage")
-//                    let downloadUrl = metadata?.downloadURL()?.absoluteString
-//                    if let url = downloadUrl {
-//                        self.postToFirebase(imgUrl: url)
-//                    }
-//                    
-//                }
-//                
-//                
-//            }
-//        }
-//        performSegue(withIdentifier: "AccountToFeed", sender: nil)
-//    }
     
     func postToFirebase(imgUrl: String) {
         let profileUserName = userName.text! as AnyObject

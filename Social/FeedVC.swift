@@ -10,18 +10,21 @@ import UIKit
 import SwiftKeychainWrapper
 import Firebase
 
-class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPopoverPresentationControllerDelegate, SendDataToFeedVC {
+class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPopoverPresentationControllerDelegate, SendDataToFeedVC, SegueToComments {
     
-    @IBOutlet weak var captionField: FancyField!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var imageAdd: CircleView!
     @IBOutlet weak var mostPopularView: ShadowView!
-    @IBOutlet weak var newestView: UIView!
-    @IBOutlet weak var myPostsView: UIView!
+    @IBOutlet weak var newestView: ShadowView!
+    @IBOutlet weak var myPostsView: ShadowView!
     @IBOutlet weak var addPostView: UIView!
     @IBOutlet weak var userProfileView: UIView!
+    @IBOutlet weak var mostPopularWidthConstraint: NSLayoutConstraint!
+    @IBOutlet weak var myPostsWidthConstraint: NSLayoutConstraint!
+    @IBOutlet weak var newestWidthConstraint: NSLayoutConstraint!
     
     var posts = [Post]()
+    var myPosts = [Post]()
     var ImagePicker: UIImagePickerController!
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
     var imageSelected = false
@@ -40,22 +43,46 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
         ImagePicker.allowsEditing = true
         ImagePicker.delegate = self
 
-        // Listner on database for new posts
         DataService.ds.REF_POSTS.observe(.value, with: { (snapshot) in
             self.posts = []
             if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
-                for snap in snapshot {
-                    print("SNAP: \(snap)")
-                    if let postDict = snap.value as? Dictionary<String, AnyObject> {
-                        let key = snap.key
-                        let post = Post(postKey: key, postData: postDict)
-                        self.posts.append(post)
+                if self.myPostsView.layer.shadowOpacity == 0.8 {
+                    for snap in snapshot {
+                        if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                            let nameLbl = postDict["nameLbl"] as? String ?? "n/a"
+                            if nameLbl == self.userLbl {
+                                let key = snap.key
+                                let post = Post(postKey: key, postData: postDict)
+                                self.posts.append(post)
+                            }
+                        }
+                    }
+                } else {
+                    for snap in snapshot {
+                        if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                            let key = snap.key
+                            let post = Post(postKey: key, postData: postDict)
+                            self.posts.append(post)
+                        }
                     }
                 }
             }
-            self.posts.reverse()
-            self.tableView.reloadData()
+            if self.newestView.layer.shadowOpacity == 0.8 {
+                self.posts.reverse()
+                self.tableView.reloadData()
+            } else if self.mostPopularView.layer.shadowOpacity == 0.8 {
+                self.posts.sort() { ($0.likes) > ($1.likes) }
+                self.tableView.reloadData()
+            } else if self.myPostsView.layer.shadowOpacity == 0.8 {
+                self.posts.reverse()
+                self.tableView.reloadData()
+            }
         })
+        
+        let screenWidth = UIScreen.main.bounds.width
+        mostPopularWidthConstraint.constant = screenWidth / 3.05
+        myPostsWidthConstraint.constant = screenWidth / 3.05
+        newestWidthConstraint.constant = screenWidth / 3.05
     }
     
     
@@ -65,6 +92,12 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
         captionFromAddPostVC = caption
     }
     
+    
+    // Delegate function - Perform segue from cell
+    
+    func segueToComments(postKey: String) {
+        performSegue(withIdentifier: "toComments", sender: postKey)
+    }
     
     
     // TableView functions
@@ -79,9 +112,8 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let post = posts[indexPath.row]
-        
-        // dequeue cell for cached or download new image
         if let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell") as? PostCell {
+            cell.segueDelegate = self
             if let img = FeedVC.imageCache.object(forKey: post.imageUrl as NSString), let img2 = FeedVC.imageCache.object(forKey: post.profileImg as NSString) {
                 cell.configureCell(post: post, img: img, img2: img2)
                 return cell
@@ -97,15 +129,19 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if posts[indexPath.row].caption == "" {
             return 370
-        } else if posts[indexPath.row].caption.characters.count < 60 {
-            return 406
-        } else if posts[indexPath.row].caption.characters.count >= 50 && posts[indexPath.row].caption.characters.count <= 100 {
-            return 425
         } else {
-            return 444
+            return UITableViewAutomaticDimension
         }
     }
     
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        if posts[indexPath.row].caption == "" {
+            return 370
+        } else {
+            return UITableViewAutomaticDimension
+        }
+    }
+
     
     // ImagePicker functions
     
@@ -144,11 +180,9 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
                 "nameLbl": self.userLbl as AnyObject
             ]
             
-            // Posting dictionary of new post under an AutoId
             let firebasePost = DataService.ds.REF_POSTS.childByAutoId()
             firebasePost.setValue(post)
             
-            // Adding the post AutoId to the user for ownership of post
             let addPostToUser = DataService.ds.REF_USER_CURRENT.child("posts").child(firebasePost.key)
             addPostToUser.setValue(true)
         })
@@ -161,6 +195,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let screenSize = UIScreen.main.bounds
         let screenWidth = screenSize.width
+        let screenHeight = screenSize.height
         if let controller = segue.destination as? addPostVC {
             controller.preferredContentSize = CGSize(width: screenWidth * 0.95, height: 400)
             controller.sendDataDelegate = self
@@ -170,14 +205,25 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
                 popoverController!.sourceView = addPostView
                 popoverController!.sourceRect = addPostView.bounds
             }
-        }
-        if let controller = segue.destination as? UserProfileVC {
+        } else if let controller = segue.destination as? UserProfileVC {
             controller.preferredContentSize = CGSize(width: screenWidth * 0.95, height: 400)
             let popoverController = controller.popoverPresentationController
             if popoverController != nil {
                 popoverController!.delegate = self
                 popoverController!.sourceView = userProfileView
                 popoverController!.sourceRect = userProfileView.bounds
+            }
+        } else if let controller = segue.destination as? CommentsVC {
+            controller.preferredContentSize = CGSize(width: screenWidth * 0.85, height: screenHeight * 0.85)
+            if let x = sender {
+                controller.postKey = x as! String
+            }
+            let popoverController = controller.popoverPresentationController
+            if popoverController != nil {
+                popoverController!.delegate = self
+                popoverController!.sourceView = self.view
+                popoverController!.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0)
+                popoverController!.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
             }
         }
     }
@@ -189,36 +235,87 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
     
     // IBActions
     
-    @IBAction func signOutTapped(_ sender: Any) {
-        KeychainWrapper.standard.removeObject(forKey: KEY_UID)
-        try! FIRAuth.auth()?.signOut()
-        performSegue(withIdentifier: "goToSignIn", sender: nil)
-    }
-    
     @IBAction func mostPopularSortPressed(_ sender: UITapGestureRecognizer) {
         mostPopularView.backgroundColor = UIColor(red: 200/255, green: 137/255, blue: 123/255, alpha: 1)
-        
+        mostPopularView.layer.shadowOpacity = 0.8
         newestView.backgroundColor = UIColor(red: 144/255, green: 202/255, blue: 175/255, alpha: 1)
+        newestView.layer.shadowOpacity = 0.0
         myPostsView.backgroundColor = UIColor(red: 144/255, green: 202/255, blue: 175/255, alpha: 1)
+        myPostsView.layer.shadowOpacity = 0.0
         
-        posts.sort() { ($0.likes) > ($1.likes) }
-        tableView.reloadData()
+        DataService.ds.REF_POSTS.observeSingleEvent(of: .value, with: { (snapshot) in
+            self.posts = []
+            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                for snap in snapshot {
+                    if let postDict = snap.value as? [String: AnyObject] {
+                        let key = snap.key
+                        let post = Post(postKey: key, postData: postDict)
+                        self.posts.append(post)
+                    }
+                }
+            }
+            self.posts.sort() { ($0.likes) > ($1.likes) }
+            self.tableView.reloadData()
+        })
+        tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
     }
 
     @IBAction func newestSortPressed(_ sender: UITapGestureRecognizer) {
         newestView.backgroundColor = UIColor(red: 200/255, green: 137/255, blue: 123/255, alpha: 1)
-        
+        newestView.layer.shadowOpacity = 0.8
         mostPopularView.backgroundColor = UIColor(red: 144/255, green: 202/255, blue: 175/255, alpha: 1)
+        mostPopularView.layer.shadowOpacity = 0.0
         myPostsView.backgroundColor = UIColor(red: 144/255, green: 202/255, blue: 175/255, alpha: 1)
+        myPostsView.layer.shadowOpacity = 0.0
         
-        tableView.reloadData()
+        DataService.ds.REF_POSTS.observeSingleEvent(of: .value, with: { (snapshot) in
+            self.posts = []
+            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                for snap in snapshot {
+                    if let postDict = snap.value as? [String: AnyObject] {
+                        let key = snap.key
+                        let post = Post(postKey: key, postData: postDict)
+                        self.posts.append(post)
+                    }
+                }
+            }
+            self.posts.reverse()
+            self.tableView.reloadData()
+        })
+        tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
     }
 
     @IBAction func myPostsSortPressed(_ sender: UITapGestureRecognizer) {
         myPostsView.backgroundColor = UIColor(red: 200/255, green: 137/255, blue: 123/255, alpha: 1)
-        
+        myPostsView.layer.shadowOpacity = 0.8
         newestView.backgroundColor = UIColor(red: 144/255, green: 202/255, blue: 175/255, alpha: 1)
+        newestView.layer.shadowOpacity = 0.0
         mostPopularView.backgroundColor = UIColor(red: 144/255, green: 202/255, blue: 175/255, alpha: 1)
+        mostPopularView.layer.shadowOpacity = 0.0
+        
+        DataService.ds.REF_USER_CURRENT.observeSingleEvent(of: .value, with: { (snapshot) in
+            if let userDict = snapshot.value as? [String: Any] {
+                self.userLbl = userDict["Username"] as! String
+            }
+            DataService.ds.REF_POSTS.observeSingleEvent(of: .value, with: { (snapshot) in
+                self.posts = []
+                if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                    for snap in snapshot {
+                        if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                            let nameLbl = postDict["nameLbl"] as? String ?? "n/a"
+                            if nameLbl == self.userLbl {
+                                let key = snap.key
+                                let post = Post(postKey: key, postData: postDict)
+                                self.posts.append(post)
+                            }
+                        }
+                    }
+                }
+                self.posts.reverse()
+                self.tableView.reloadData()
+            })
+        })
+        tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
     }
     
     @IBAction func addPostPressed(_ sender: UITapGestureRecognizer) {

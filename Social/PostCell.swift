@@ -9,6 +9,10 @@
 import UIKit
 import Firebase
 
+protocol SegueToComments {
+    func segueToComments(postKey: String)
+}
+
 class PostCell: UITableViewCell, UIPopoverPresentationControllerDelegate {
     
     @IBOutlet weak var profileImg: UIImageView!
@@ -18,11 +22,11 @@ class PostCell: UITableViewCell, UIPopoverPresentationControllerDelegate {
     @IBOutlet weak var likesLbl: UILabel!
     @IBOutlet weak var likeImg: UIImageView!
     @IBOutlet weak var deleteBtn: UIButton!
-
     
     var post: Post!
     var likesRef: FIRDatabaseReference!
     var myPostRef: FIRDatabaseReference!
+    var segueDelegate: SegueToComments!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -33,9 +37,11 @@ class PostCell: UITableViewCell, UIPopoverPresentationControllerDelegate {
         likeImg.isUserInteractionEnabled = true
         
         deleteBtn.isHidden = true
-        
     }
+    
+    
     // Setting data in post cell
+    
     func configureCell(post: Post, img: UIImage? = nil, img2: UIImage? = nil) {
         self.post = post
         likesRef = DataService.ds.REF_USER_CURRENT.child("likes").child(post.postKey)
@@ -67,7 +73,7 @@ class PostCell: UITableViewCell, UIPopoverPresentationControllerDelegate {
             self.profileImg.image = img2
         } else {
             let ref = FIRStorage.storage().reference(forURL: post.profileImg)
-            ref.data(withMaxSize: 2 * 1024 * 1024, completion: { (data, error) in
+            ref.data(withMaxSize: 2 * 500 * 500, completion: { (data, error) in
                 if error != nil {
                     print("TREVOR: Unable to download image from Firebase storage")
                 } else {
@@ -82,8 +88,6 @@ class PostCell: UITableViewCell, UIPopoverPresentationControllerDelegate {
             })
         }
         
-        
-
         likesRef.observeSingleEvent(of: .value, with: { (snapshot) in
             if let _ = snapshot.value as? NSNull {
                 self.likeImg.image = UIImage(named: "uncheckedHeart")
@@ -92,19 +96,17 @@ class PostCell: UITableViewCell, UIPopoverPresentationControllerDelegate {
             }
         })
         
-        // Create single event type to observe if post is by the user. If it is, show option to delete post
         myPostRef.observeSingleEvent(of: .value, with: { (snapshot) in
             if let _ = snapshot.value as? NSNull {
                 self.deleteBtn.isHidden = true
             } else {
                 self.deleteBtn.isHidden = false
-                
             }
         })
-        
     }
     
-
+    
+    // IBActions
     
     func likeTapped(sender: UITapGestureRecognizer ) {
         sender.isEnabled = false
@@ -120,20 +122,16 @@ class PostCell: UITableViewCell, UIPopoverPresentationControllerDelegate {
             }
             sender.isEnabled = true
         })
-        
     }
     
     @IBAction func deletePressed(_ sender: Any) {
         self.post.deletePost()
         self.myPostRef.removeValue()
         self.likesRef.removeValue()
-        
     }
     
     @IBAction func commentsPressed(_ sender: Any) {
+        let postKey = post.postKey
+        segueDelegate.segueToComments(postKey: postKey)
     }
-    
-
-
-
 }

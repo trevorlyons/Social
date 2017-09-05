@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		8C2A2E591E94F04300537575 /* CommentsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2A2E581E94F04300537575 /* CommentsVC.swift */; };
+		8C4693691F5D95BA0040CE86 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4693681F5D95BA0040CE86 /* CommentCell.swift */; };
+		8C46936C1F5DC8060040CE86 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C46936B1F5DC8060040CE86 /* Comment.swift */; };
+		8C46936E1F5EE3850040CE86 /* ShadowSortView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C46936D1F5EE3850040CE86 /* ShadowSortView.swift */; };
 		8C9D296A1F3F407C00C95BC7 /* EmailSignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9D29691F3F407C00C95BC7 /* EmailSignInVC.swift */; };
 		8C9D296C1F41A29800C95BC7 /* RoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9D296B1F41A29800C95BC7 /* RoundView.swift */; };
 		8C9D296E1F4305DB00C95BC7 /* RoundedCnrView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9D296D1F4305DB00C95BC7 /* RoundedCnrView.swift */; };
@@ -42,6 +45,9 @@
 		1D7E849D5D543D079B7D1F4B /* Pods-Social.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Social.release.xcconfig"; path = "Pods/Target Support Files/Pods-Social/Pods-Social.release.xcconfig"; sourceTree = "<group>"; };
 		49264DCB0C970B9E0DAA8601 /* Pods_Social.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Social.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C2A2E581E94F04300537575 /* CommentsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsVC.swift; sourceTree = "<group>"; };
+		8C4693681F5D95BA0040CE86 /* CommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
+		8C46936B1F5DC8060040CE86 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		8C46936D1F5EE3850040CE86 /* ShadowSortView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShadowSortView.swift; sourceTree = "<group>"; };
 		8C9D29691F3F407C00C95BC7 /* EmailSignInVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailSignInVC.swift; sourceTree = "<group>"; };
 		8C9D296B1F41A29800C95BC7 /* RoundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundView.swift; sourceTree = "<group>"; };
 		8C9D296D1F4305DB00C95BC7 /* RoundedCnrView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedCnrView.swift; sourceTree = "<group>"; };
@@ -95,6 +101,34 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		8C4693521F59D9410040CE86 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				8CB63AB01E8AAEEB00833C0B /* PostCell.swift */,
+				8C4693681F5D95BA0040CE86 /* CommentCell.swift */,
+			);
+			name = Cell;
+			sourceTree = "<group>";
+		};
+		8C4693531F59D9780040CE86 /* Appearance */ = {
+			isa = PBXGroup;
+			children = (
+				8CB63AB71E91014500833C0B /* HeaderView.swift */,
+				8CB63A9C1E897F2300833C0B /* FancyView.swift */,
+				8C9D296B1F41A29800C95BC7 /* RoundView.swift */,
+				8C9D296D1F4305DB00C95BC7 /* RoundedCnrView.swift */,
+				8CB63AA21E8981B600833C0B /* RoundButton.swift */,
+				8CB63AA41E89834000833C0B /* FancyField.swift */,
+				8CB63AA61E89846C00833C0B /* FancyButton.swift */,
+				8CB63AAE1E8A7E1E00833C0B /* CircleView.swift */,
+				8C9D297B1F4457D300C95BC7 /* RoundedCnrImg.swift */,
+				8C9D29711F43333C00C95BC7 /* ShadowView.swift */,
+				8C46936D1F5EE3850040CE86 /* ShadowSortView.swift */,
+				8C9D29791F443EB100C95BC7 /* TextViewStyle.swift */,
+			);
+			name = Appearance;
+			sourceTree = "<group>";
+		};
 		8CB63A751E894F3900833C0B = {
 			isa = PBXGroup;
 			children = (
@@ -137,6 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				8CB63AB51E8BD53100833C0B /* Post.swift */,
+				8C46936B1F5DC8060040CE86 /* Comment.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -144,18 +179,8 @@
 		8CB63A961E89528400833C0B /* View */ = {
 			isa = PBXGroup;
 			children = (
-				8CB63AB71E91014500833C0B /* HeaderView.swift */,
-				8CB63A9C1E897F2300833C0B /* FancyView.swift */,
-				8C9D296B1F41A29800C95BC7 /* RoundView.swift */,
-				8C9D296D1F4305DB00C95BC7 /* RoundedCnrView.swift */,
-				8CB63AA21E8981B600833C0B /* RoundButton.swift */,
-				8CB63AA41E89834000833C0B /* FancyField.swift */,
-				8CB63AA61E89846C00833C0B /* FancyButton.swift */,
-				8CB63AAE1E8A7E1E00833C0B /* CircleView.swift */,
-				8C9D297B1F4457D300C95BC7 /* RoundedCnrImg.swift */,
-				8CB63AB01E8AAEEB00833C0B /* PostCell.swift */,
-				8C9D29711F43333C00C95BC7 /* ShadowView.swift */,
-				8C9D29791F443EB100C95BC7 /* TextViewStyle.swift */,
+				8C4693531F59D9780040CE86 /* Appearance */,
+				8C4693521F59D9410040CE86 /* Cell */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -167,9 +192,9 @@
 				8C9D29691F3F407C00C95BC7 /* EmailSignInVC.swift */,
 				8CB63AB91E91025700833C0B /* AccountSetupVC.swift */,
 				8CB63AAC1E8A6D0700833C0B /* FeedVC.swift */,
-				8C2A2E581E94F04300537575 /* CommentsVC.swift */,
 				8C9D29731F43471800C95BC7 /* addPostVC.swift */,
 				8C9D29751F442D9D00C95BC7 /* UserProfileVC.swift */,
+				8C2A2E581E94F04300537575 /* CommentsVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -342,12 +367,14 @@
 				8CB63AA51E89834000833C0B /* FancyField.swift in Sources */,
 				8C9D29761F442D9D00C95BC7 /* UserProfileVC.swift in Sources */,
 				8CB63A841E894F3A00833C0B /* SignInVC.swift in Sources */,
+				8C46936E1F5EE3850040CE86 /* ShadowSortView.swift in Sources */,
 				8C9D296C1F41A29800C95BC7 /* RoundView.swift in Sources */,
 				8C9D29721F43333C00C95BC7 /* ShadowView.swift in Sources */,
 				8CB63AB61E8BD53100833C0B /* Post.swift in Sources */,
 				8CB63ABA1E91025700833C0B /* AccountSetupVC.swift in Sources */,
 				8CB63AA31E8981B600833C0B /* RoundButton.swift in Sources */,
 				8CB63AA71E89846C00833C0B /* FancyButton.swift in Sources */,
+				8C46936C1F5DC8060040CE86 /* Comment.swift in Sources */,
 				8C9D296E1F4305DB00C95BC7 /* RoundedCnrView.swift in Sources */,
 				8C9D296A1F3F407C00C95BC7 /* EmailSignInVC.swift in Sources */,
 				8CB63AB41E8BAC2800833C0B /* DataService.swift in Sources */,
@@ -361,6 +388,7 @@
 				8C9D297C1F4457D300C95BC7 /* RoundedCnrImg.swift in Sources */,
 				8CB63AB81E91014500833C0B /* HeaderView.swift in Sources */,
 				8C2A2E591E94F04300537575 /* CommentsVC.swift in Sources */,
+				8C4693691F5D95BA0040CE86 /* CommentCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -495,6 +523,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.Trevorsapps.Social;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -514,6 +543,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.Trevorsapps.Social;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
