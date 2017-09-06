@@ -11,6 +11,7 @@
 		8C4693691F5D95BA0040CE86 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4693681F5D95BA0040CE86 /* CommentCell.swift */; };
 		8C46936C1F5DC8060040CE86 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C46936B1F5DC8060040CE86 /* Comment.swift */; };
 		8C46936E1F5EE3850040CE86 /* ShadowSortView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C46936D1F5EE3850040CE86 /* ShadowSortView.swift */; };
+		8C4693701F6011C00040CE86 /* CatChatPrivacyPolicy.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8C46936F1F6011C00040CE86 /* CatChatPrivacyPolicy.txt */; };
 		8C9D296A1F3F407C00C95BC7 /* EmailSignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9D29691F3F407C00C95BC7 /* EmailSignInVC.swift */; };
 		8C9D296C1F41A29800C95BC7 /* RoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9D296B1F41A29800C95BC7 /* RoundView.swift */; };
 		8C9D296E1F4305DB00C95BC7 /* RoundedCnrView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9D296D1F4305DB00C95BC7 /* RoundedCnrView.swift */; };
@@ -48,6 +49,7 @@
 		8C4693681F5D95BA0040CE86 /* CommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		8C46936B1F5DC8060040CE86 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		8C46936D1F5EE3850040CE86 /* ShadowSortView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShadowSortView.swift; sourceTree = "<group>"; };
+		8C46936F1F6011C00040CE86 /* CatChatPrivacyPolicy.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CatChatPrivacyPolicy.txt; sourceTree = "<group>"; };
 		8C9D29691F3F407C00C95BC7 /* EmailSignInVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailSignInVC.swift; sourceTree = "<group>"; };
 		8C9D296B1F41A29800C95BC7 /* RoundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundView.swift; sourceTree = "<group>"; };
 		8C9D296D1F4305DB00C95BC7 /* RoundedCnrView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedCnrView.swift; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 		8CB63A9F1E897FB100833C0B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				8C46936F1F6011C00040CE86 /* CatChatPrivacyPolicy.txt */,
 				8CB63A9A1E895E2300833C0B /* Albondigas.ttf */,
 			);
 			name = Resources;
@@ -304,6 +307,7 @@
 				8CB63A8C1E894F3A00833C0B /* LaunchScreen.storyboard in Resources */,
 				8CB63A941E894FF400833C0B /* GoogleService-Info.plist in Resources */,
 				8CB63A891E894F3A00833C0B /* Assets.xcassets in Resources */,
+				8C4693701F6011C00040CE86 /* CatChatPrivacyPolicy.txt in Resources */,
 				8CB63A871E894F3A00833C0B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

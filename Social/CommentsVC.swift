@@ -29,8 +29,9 @@ class CommentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         tableView.tableFooterView = UIView()
         
         textBox.delegate = self
-        textBox.text = "comment meow..."
+        textBox.text = "comment here..."
         textBox.textColor = UIColor.lightGray
+        textBox.autocorrectionType = .no
         
         addCommentStack.isHidden = true
         
@@ -110,7 +111,6 @@ class CommentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     func postCommentToFirebase() {
         let commentSend = textBox.text
         let date = Date()
-        print("TREVOR!! - \(date)")
         let formatter = DateFormatter()
         formatter.dateFormat = "dd.MM.yyyy"
         let result = formatter.string(from: date)
@@ -141,6 +141,17 @@ class CommentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         })
     }
     
+    
+    // Scroll timer function
+    
+    func scrollToBottom() {
+        if comments.count <= 1 {
+            
+        } else  {
+            tableView.scrollToRow(at: IndexPath(row: (comments.count - 1), section: 0), at: .bottom, animated: true)
+        }
+    }
+    
 
     // IBActions
     
@@ -155,10 +166,14 @@ class CommentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         } else {
             addCommentStack.isHidden = true
             addBtn.image = UIImage(named: "add button")
+            textBox.endEditing(true)
         }
     }
 
     @IBAction func postCommentPressed(_ sender: UITapGestureRecognizer) {
+        if textBox.text == "comment here..." {
+            textBox.text = ""
+        }
         guard let noComment = textBox.text, noComment != "" else {
             print("you need a comment to comment silly cat!")
             return
@@ -167,5 +182,7 @@ class CommentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         addCommentStack.isHidden = true
         addBtn.image = UIImage(named: "add button")
         textBox.text = ""
+        textBox.endEditing(true)
+        Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(scrollToBottom), userInfo: nil, repeats: false)
     }
 }

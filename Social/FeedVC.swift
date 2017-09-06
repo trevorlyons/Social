@@ -236,6 +236,9 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
     // IBActions
     
     @IBAction func mostPopularSortPressed(_ sender: UITapGestureRecognizer) {
+        if posts.count != 0 {
+            tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+        }
         mostPopularView.backgroundColor = UIColor(red: 200/255, green: 137/255, blue: 123/255, alpha: 1)
         mostPopularView.layer.shadowOpacity = 0.8
         newestView.backgroundColor = UIColor(red: 144/255, green: 202/255, blue: 175/255, alpha: 1)
@@ -257,10 +260,12 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
             self.posts.sort() { ($0.likes) > ($1.likes) }
             self.tableView.reloadData()
         })
-        tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
     }
 
     @IBAction func newestSortPressed(_ sender: UITapGestureRecognizer) {
+        if posts.count != 0 {
+            tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+        }
         newestView.backgroundColor = UIColor(red: 200/255, green: 137/255, blue: 123/255, alpha: 1)
         newestView.layer.shadowOpacity = 0.8
         mostPopularView.backgroundColor = UIColor(red: 144/255, green: 202/255, blue: 175/255, alpha: 1)
@@ -282,10 +287,12 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
             self.posts.reverse()
             self.tableView.reloadData()
         })
-        tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
     }
 
     @IBAction func myPostsSortPressed(_ sender: UITapGestureRecognizer) {
+        if posts.count != 0 {
+            tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
+        }
         myPostsView.backgroundColor = UIColor(red: 200/255, green: 137/255, blue: 123/255, alpha: 1)
         myPostsView.layer.shadowOpacity = 0.8
         newestView.backgroundColor = UIColor(red: 144/255, green: 202/255, blue: 175/255, alpha: 1)
@@ -315,7 +322,6 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
                 self.tableView.reloadData()
             })
         })
-        tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
     }
     
     @IBAction func addPostPressed(_ sender: UITapGestureRecognizer) {

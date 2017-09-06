@@ -21,13 +21,17 @@ class EmailSignInVC: UIViewController {
 
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
+    @IBOutlet weak var warningLbl: UILabel!
     
     var signInDelegate: SignInProtocol!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-
+        warningLbl.isHidden = true
+        
+        emailField.autocorrectionType = .no
+        passwordField.autocorrectionType = .no
     }
     
     @IBAction func signInViewTapped(_ sender: UITapGestureRecognizer) {
@@ -42,6 +46,7 @@ class EmailSignInVC: UIViewController {
                 } else {
                     FIRAuth.auth()?.createUser(withEmail: email, password: pwd, completion: { (user, error) in
                         if error != nil {
+                            self.warningLbl.isHidden = false
                             print("TREVOR: Unable to authenticate with Firebase using email")
                         } else {
                             print("TREVOR: Successfully authenticated with Firebase")

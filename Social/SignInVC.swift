@@ -17,7 +17,6 @@ class SignInVC: UIViewController, UIPopoverPresentationControllerDelegate, SignI
     @IBOutlet weak var test: UIImageView!
     @IBOutlet weak var EmailBtn: CircleView!
 
-    
     var dict: [String: Any]!
     var username: String!
     var profileUrl: String!
@@ -25,14 +24,11 @@ class SignInVC: UIViewController, UIPopoverPresentationControllerDelegate, SignI
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-
         }
     
     override func viewDidAppear(_ animated: Bool) {
         
         // checking if the id key has already been made so that signin is automatic if already signed up
-        
         if let _ = KeychainWrapper.standard.string(forKey: KEY_UID) {
             performSegue(withIdentifier: "goToFeed", sender: nil)
         }
@@ -52,8 +48,9 @@ class SignInVC: UIViewController, UIPopoverPresentationControllerDelegate, SignI
             let popoverController = controller.popoverPresentationController
             if popoverController != nil {
                 popoverController!.delegate = self
-                popoverController!.sourceView = EmailBtn
-                popoverController!.sourceRect = EmailBtn.bounds
+                popoverController!.sourceView = self.view
+                popoverController!.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0)
+                popoverController!.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
             }
         }
         if let controller = segue.destination as? AccountSetupVC {
@@ -61,8 +58,9 @@ class SignInVC: UIViewController, UIPopoverPresentationControllerDelegate, SignI
             let popoverController = controller.popoverPresentationController
             if popoverController != nil {
                 popoverController!.delegate = self
-                popoverController!.sourceView = EmailBtn
-                popoverController!.sourceRect = EmailBtn.bounds
+                popoverController!.sourceView = self.view
+                popoverController!.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0)
+                popoverController!.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
             }
         }
     }
@@ -73,29 +71,7 @@ class SignInVC: UIViewController, UIPopoverPresentationControllerDelegate, SignI
     
     
     // Facebook Login functions - Enable Facebook signin with Firebase and follow developers.facebook.com
-    
-    @IBAction func facebookViewTapped(_ sender: UITapGestureRecognizer) {
-        let facebookLogin = FBSDKLoginManager()
-        
-        facebookLogin.logIn(withReadPermissions: ["email"], from: self) { (result, error) in
-            if error != nil {
-                print("TREVOR: Unable to authenticate with Facebook - \(String(describing: error))")
-            } else if result?.isCancelled == true {
-                print("TREVOR: User cancelled Facebook authentication")
-            } else {
-                print("TREVOR: Successfully authenticated with Facebook")
-                let credential = FIRFacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
-                self.firebaseAuth(credential)
-                
-            }
-        }
-        
-    }
 
-    @IBAction func emailViewTapped(_ sender: UITapGestureRecognizer) {
-        performSegue(withIdentifier: "emailLogin", sender: self)
-    }
-    
     func firebaseAuth(_ credential: FIRAuthCredential) {
         FIRAuth.auth()?.signIn(with: credential, completion: { (user, error) in
             if error != nil {
@@ -127,26 +103,19 @@ class SignInVC: UIViewController, UIPopoverPresentationControllerDelegate, SignI
                         }
                     }
                     print("TREVOR: Facebook user dictionary - \(result!)")
-                
                     DataService.ds.REF_USER_CURRENT.child("Username").setValue(self.username!)
-                    
                     self.downloadFacebookProfileImg()
                 }
             })
         }
     }
     
-    
-    
     func downloadFacebookProfileImg() {
-        
         let url = URL(string: self.profileUrl)!
-        
         DispatchQueue.global().async {
             do {
                 let data = try Data(contentsOf: url)
                 DispatchQueue.global().sync {
-                    //self.imageAdd.image = UIImage(data: data)
                     self.test.image = UIImage(data: data)
                     self.uploadFacebookProfileImgFirebase()
                 }
@@ -155,8 +124,6 @@ class SignInVC: UIViewController, UIPopoverPresentationControllerDelegate, SignI
             }
         }
     }
-    
-    
     
     func uploadFacebookProfileImgFirebase() {
         
@@ -182,18 +149,15 @@ class SignInVC: UIViewController, UIPopoverPresentationControllerDelegate, SignI
         }
     }
     
-    
-    
     func postToFirebase(imgUrl: String) {
         let profileImage = imgUrl as AnyObject
         
         DataService.ds.REF_USER_CURRENT.child("ProfileImgUrl").setValue(profileImage)
     }
-
-    
     
     
     // function to not repeat keychain code
+    
     func completeSignIn(id: String, userData: Dictionary<String, String>) {
         DataService.ds.createFirebaseDBUser(uid: id, userData: userData)
         let keychainReuslt = KeychainWrapper.standard.set(id, forKey: KEY_UID)
@@ -210,6 +174,28 @@ class SignInVC: UIViewController, UIPopoverPresentationControllerDelegate, SignI
         performSegue(withIdentifier: "goToAccountSetup", sender: nil)
     }
     
+    
+    // IBActions
+    
     @IBAction func unwindToSignInVC(segue: UIStoryboardSegue) {}
+    
+    @IBAction func emailViewTapped(_ sender: UITapGestureRecognizer) {
+        performSegue(withIdentifier: "emailLogin", sender: self)
+    }
+    
+    @IBAction func facebookViewTapped(_ sender: UITapGestureRecognizer) {
+        let facebookLogin = FBSDKLoginManager()
+        facebookLogin.logIn(withReadPermissions: ["email"], from: self) { (result, error) in
+            if error != nil {
+                print("TREVOR: Unable to authenticate with Facebook - \(String(describing: error))")
+            } else if result?.isCancelled == true {
+                print("TREVOR: User cancelled Facebook authentication")
+            } else {
+                print("TREVOR: Successfully authenticated with Facebook")
+                let credential = FIRFacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
+                self.firebaseAuth(credential)
+            }
+        }
+    }
 }
 

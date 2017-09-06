@@ -37,6 +37,7 @@ class addPostVC: UIViewController, UITextViewDelegate, UIImagePickerControllerDe
         textField.delegate = self
         textField.text = "comment here..."
         textField.textColor = UIColor.lightGray
+        textField.autocorrectionType = .no
         
         selectPhotoWarningLbl.isHidden = true
     }

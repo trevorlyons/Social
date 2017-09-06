@@ -27,6 +27,7 @@ class UserProfileVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
     
     var imagePicker: UIImagePickerController!
     var imageSelected = false
+    var textFromFile = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,9 +41,16 @@ class UserProfileVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
         acknowledgementsStackView.isHidden = true
         updateProfileImgBtn.isHidden = true
         
-        privacyPolicyText.text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."
         
-        acknowledgementsText.text = "Cat Chat would like to thank Firebase for it's purrrrfect databse system.\n\n Also, a big thank you to call the cats who have made this community what it is today - From tom cats to kittens to tigers to persians, we are all a happy family on Cat Chat.\n\n One love."
+        
+        privacyPolicyText.text = textFromFile
+        if let path = Bundle.main.path(forResource: "CatChatPrivacyPolicy", ofType: "txt") {
+            if let contents = try? String(contentsOfFile: path) {
+                privacyPolicyText.text = contents
+            }
+        }
+        
+        acknowledgementsText.text = "Cat Chat would like to thank Firebase for it's purrrrfect databse system.\n\n Also, a big thank you to all the cats who have made this community what it is today - from tom cats to kittens to tigers to persians, we are all a happy family on Cat Chat.\n\n One love."
         
         
         getProfileImg()
@@ -84,7 +92,7 @@ class UserProfileVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
                 print("User has no assigned profile image or name")
             } else {
                 if let profileImgs = snapshot.value as? [String: Any] {
-                    let profileImgUrl = profileImgs["ProfileImgUrl"] as! String
+                    let profileImgUrl = profileImgs["ProfileImgUrl"] as? String ?? "https://firebasestorage.googleapis.com/v0/b/social-81475.appspot.com/o/post-pics%2FB9E32155-1E86-42BC-A473-C84AD2E954AB?alt=media&token=5f77095e-7b22-46c2-938a-f78302378e2e"
                     let ref = FIRStorage.storage().reference(forURL: profileImgUrl)
                     ref.data(withMaxSize: 2 * 500 * 500, completion: { (data, error) in
                         if error != nil {
