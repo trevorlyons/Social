@@ -379,10 +379,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SlI-N2-EhX">
-                                <rect key="frame" x="0.0" y="0.0" width="300" height="350"/>
+                                <rect key="frame" x="0.0" y="20" width="300" height="330"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o2S-Li-cFM" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="300" height="365"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="318"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weclome! let's create your profile meow! " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bxC-rS-sND">
                                                 <rect key="frame" x="30" y="20" width="240" height="44"/>
@@ -431,7 +431,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2ys-0u-9N9" customClass="FancyView" customModule="Social" customModuleProvider="target">
-                                                <rect key="frame" x="30" y="288" width="240" height="35"/>
+                                                <rect key="frame" x="30" y="273" width="240" height="35"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lets go meow!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ujo-jm-OJD">
                                                         <rect key="frame" x="73" y="7" width="94" height="19.5"/>
@@ -453,7 +453,7 @@
                                                 </connections>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="sWz-L2-SI3">
-                                                <rect key="frame" x="56" y="199" width="189" height="69"/>
+                                                <rect key="frame" x="56" y="189" width="189" height="69"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="74C-nK-r8B">
                                                         <rect key="frame" x="0.0" y="2" width="50" height="65"/>
@@ -489,27 +489,27 @@
                                         </subviews>
                                         <color key="backgroundColor" red="0.97647058819999999" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstItem="2ys-0u-9N9" firstAttribute="top" secondItem="sWz-L2-SI3" secondAttribute="bottom" constant="20" id="0Xf-py-PEm"/>
+                                            <constraint firstItem="2ys-0u-9N9" firstAttribute="top" secondItem="sWz-L2-SI3" secondAttribute="bottom" constant="15" id="0Xf-py-PEm"/>
                                             <constraint firstItem="PVq-c9-qDm" firstAttribute="centerX" secondItem="o2S-Li-cFM" secondAttribute="centerX" id="1rL-ZU-2HX"/>
                                             <constraint firstItem="2ys-0u-9N9" firstAttribute="centerX" secondItem="o2S-Li-cFM" secondAttribute="centerX" id="Bpp-Wp-MVD"/>
                                             <constraint firstItem="XYZ-cf-Fa1" firstAttribute="top" secondItem="PVq-c9-qDm" secondAttribute="bottom" constant="15" id="CEd-7H-TEy"/>
                                             <constraint firstItem="XYZ-cf-Fa1" firstAttribute="centerX" secondItem="o2S-Li-cFM" secondAttribute="centerX" id="CYa-nZ-Rzd"/>
                                             <constraint firstItem="bxC-rS-sND" firstAttribute="centerX" secondItem="o2S-Li-cFM" secondAttribute="centerX" id="PeU-O0-Mbl"/>
                                             <constraint firstItem="bxC-rS-sND" firstAttribute="top" secondItem="o2S-Li-cFM" secondAttribute="top" constant="20" id="RFL-lg-Z1Z"/>
-                                            <constraint firstAttribute="bottom" secondItem="2ys-0u-9N9" secondAttribute="bottom" constant="42" id="S8c-OJ-7yA"/>
+                                            <constraint firstAttribute="bottom" secondItem="2ys-0u-9N9" secondAttribute="bottom" constant="10" id="S8c-OJ-7yA"/>
                                             <constraint firstItem="PVq-c9-qDm" firstAttribute="top" secondItem="i5s-su-k4g" secondAttribute="bottom" constant="10" id="WY2-la-S7F"/>
                                             <constraint firstItem="i5s-su-k4g" firstAttribute="centerX" secondItem="o2S-Li-cFM" secondAttribute="centerX" id="Y8q-1v-lZl"/>
                                             <constraint firstItem="sWz-L2-SI3" firstAttribute="centerX" secondItem="o2S-Li-cFM" secondAttribute="centerX" id="f6x-gI-a2i"/>
                                             <constraint firstItem="i5s-su-k4g" firstAttribute="top" secondItem="bxC-rS-sND" secondAttribute="bottom" constant="15" id="gtn-jG-WWM"/>
-                                            <constraint firstItem="sWz-L2-SI3" firstAttribute="top" secondItem="XYZ-cf-Fa1" secondAttribute="bottom" constant="20" id="xQX-pq-s66"/>
+                                            <constraint firstItem="sWz-L2-SI3" firstAttribute="top" secondItem="XYZ-cf-Fa1" secondAttribute="bottom" constant="10" id="xQX-pq-s66"/>
                                         </constraints>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.97647058819999999" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstItem="o2S-Li-cFM" firstAttribute="top" secondItem="SlI-N2-EhX" secondAttribute="top" id="EfD-Ov-7Ri"/>
                                     <constraint firstAttribute="bottom" secondItem="o2S-Li-cFM" secondAttribute="bottom" id="k8C-rt-hrr"/>
                                     <constraint firstItem="o2S-Li-cFM" firstAttribute="leading" secondItem="SlI-N2-EhX" secondAttribute="leading" id="pON-Qs-55m"/>
-                                    <constraint firstItem="o2S-Li-cFM" firstAttribute="top" secondItem="SlI-N2-EhX" secondAttribute="top" id="qGW-w0-mOq"/>
                                     <constraint firstAttribute="trailing" secondItem="o2S-Li-cFM" secondAttribute="trailing" id="skh-sK-RZ2"/>
                                 </constraints>
                             </scrollView>
@@ -517,9 +517,9 @@
                         <color key="backgroundColor" red="0.98039215690000003" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="SlI-N2-EhX" firstAttribute="leading" secondItem="Vs7-fb-bAw" secondAttribute="leading" id="CmN-yf-Dd2"/>
+                            <constraint firstItem="SlI-N2-EhX" firstAttribute="top" secondItem="XIS-ER-l9x" secondAttribute="bottom" id="FCQ-m3-rS5"/>
                             <constraint firstAttribute="trailing" secondItem="SlI-N2-EhX" secondAttribute="trailing" id="MPZ-fM-RGx"/>
                             <constraint firstItem="o2S-Li-cFM" firstAttribute="width" secondItem="Vs7-fb-bAw" secondAttribute="width" id="biz-YT-3Ps"/>
-                            <constraint firstItem="SlI-N2-EhX" firstAttribute="top" secondItem="Vs7-fb-bAw" secondAttribute="top" id="bpx-TB-CVA"/>
                             <constraint firstItem="GVN-J7-rfG" firstAttribute="top" secondItem="SlI-N2-EhX" secondAttribute="bottom" id="k7D-mj-nek"/>
                         </constraints>
                     </view>
@@ -1850,6 +1850,6 @@
         <image name="x" width="10" height="10"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="uXk-HD-PtT"/>
+        <segue reference="Upf-WI-UUP"/>
     </inferredMetricsTieBreakers>
 </document>
