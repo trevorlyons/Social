@@ -28,7 +28,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
     var ImagePicker: UIImagePickerController!
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
     var imageSelected = false
-    var userLblRef: FIRDatabaseReference!
+    var userLblRef: DatabaseReference!
     var userLbl: String!
     var profilePic: String!
     var captionFromAddPostVC: String!
@@ -45,7 +45,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
 
         DataService.ds.REF_POSTS.observe(.value, with: { (snapshot) in
             self.posts = []
-            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+            if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
                 if self.myPostsView.layer.shadowOpacity == 0.8 {
                     for snap in snapshot {
                         if let postDict = snap.value as? Dictionary<String, AnyObject> {
@@ -248,7 +248,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
         
         DataService.ds.REF_POSTS.observeSingleEvent(of: .value, with: { (snapshot) in
             self.posts = []
-            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+            if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
                 for snap in snapshot {
                     if let postDict = snap.value as? [String: AnyObject] {
                         let key = snap.key
@@ -275,7 +275,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
         
         DataService.ds.REF_POSTS.observeSingleEvent(of: .value, with: { (snapshot) in
             self.posts = []
-            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+            if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
                 for snap in snapshot {
                     if let postDict = snap.value as? [String: AnyObject] {
                         let key = snap.key
@@ -306,7 +306,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
             }
             DataService.ds.REF_POSTS.observeSingleEvent(of: .value, with: { (snapshot) in
                 self.posts = []
-                if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
                     for snap in snapshot {
                         if let postDict = snap.value as? Dictionary<String, AnyObject> {
                             let nameLbl = postDict["nameLbl"] as? String ?? "n/a"

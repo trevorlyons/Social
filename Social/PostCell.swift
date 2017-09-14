@@ -24,8 +24,8 @@ class PostCell: UITableViewCell, UIPopoverPresentationControllerDelegate {
     @IBOutlet weak var deleteBtn: UIButton!
     
     var post: Post!
-    var likesRef: FIRDatabaseReference!
-    var myPostRef: FIRDatabaseReference!
+    var likesRef: DatabaseReference!
+    var myPostRef: DatabaseReference!
     var segueDelegate: SegueToComments!
 
     override func awakeFromNib() {
@@ -54,8 +54,8 @@ class PostCell: UITableViewCell, UIPopoverPresentationControllerDelegate {
         if img != nil {
             self.postImg.image = img
         } else {
-            let ref = FIRStorage.storage().reference(forURL: post.imageUrl)
-            ref.data(withMaxSize: 2 * 1024 * 1024, completion: { (data, error) in
+            let ref = Storage.storage().reference(forURL: post.imageUrl)
+            ref.getData(maxSize: 2 * 1024 * 1024, completion: { (data, error) in
                 if error != nil {
                     print("TREVOR: Unable to download image from Firebase storage")
                 } else {
@@ -72,8 +72,8 @@ class PostCell: UITableViewCell, UIPopoverPresentationControllerDelegate {
         if img2 != nil {
             self.profileImg.image = img2
         } else {
-            let ref = FIRStorage.storage().reference(forURL: post.profileImg)
-            ref.data(withMaxSize: 2 * 500 * 500, completion: { (data, error) in
+            let ref = Storage.storage().reference(forURL: post.profileImg)
+            ref.getData(maxSize: 2 * 500 * 500, completion: { (data, error) in
                 if error != nil {
                     print("TREVOR: Unable to download image from Firebase storage")
                 } else {

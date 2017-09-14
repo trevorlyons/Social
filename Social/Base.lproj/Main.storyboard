@@ -96,7 +96,7 @@
                                                                 </constraints>
                                                             </imageView>
                                                         </subviews>
-                                                        <color key="backgroundColor" red="1" green="0.97647058823529409" blue="0.38039215686274508" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="backgroundColor" red="0.99901789426803589" green="0.95624023675918579" blue="0.47992038726806641" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <gestureRecognizers/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="75" id="aEW-q8-VfX"/>
@@ -124,7 +124,7 @@
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" red="0.75686274509803919" green="0.99215686274509807" blue="0.88235294117647056" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.75288146734237671" green="0.98111945390701294" blue="0.88246172666549683" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="rZl-OQ-DZN" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="3Y4-NR-VVt"/>
                             <constraint firstAttribute="trailingMargin" secondItem="P5c-gg-297" secondAttribute="trailing" id="Sku-dc-wmC"/>
@@ -349,6 +349,7 @@
                     <connections>
                         <outlet property="emailField" destination="Ycv-V1-C32" id="1Ew-eZ-eVV"/>
                         <outlet property="passwordField" destination="ec1-ZN-479" id="9pY-lg-CQA"/>
+                        <outlet property="signInBtn" destination="ngS-dd-uVa" id="Xp0-jq-6sZ"/>
                         <outlet property="warningLbl" destination="Akd-V4-lFb" id="qLj-m6-KsU"/>
                     </connections>
                 </viewController>
@@ -364,7 +365,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="181" y="-39"/>
+            <point key="canvasLocation" x="181" y="-90"/>
         </scene>
         <!--Account SetupVC-->
         <scene sceneID="xrQ-Cq-Rtl">

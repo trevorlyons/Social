@@ -16,7 +16,7 @@ class Comment {
     let date: String!
     let postKey: String!
     let commentKey: String!
-    let commentRef: FIRDatabaseReference!
+    let commentRef: DatabaseReference!
     
     init(commentKey: String, commentData: [String : AnyObject]) {
         self.commentKey = commentKey

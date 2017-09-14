@@ -93,8 +93,8 @@ class UserProfileVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
             } else {
                 if let profileImgs = snapshot.value as? [String: Any] {
                     let profileImgUrl = profileImgs["ProfileImgUrl"] as? String ?? "https://firebasestorage.googleapis.com/v0/b/social-81475.appspot.com/o/post-pics%2FB9E32155-1E86-42BC-A473-C84AD2E954AB?alt=media&token=5f77095e-7b22-46c2-938a-f78302378e2e"
-                    let ref = FIRStorage.storage().reference(forURL: profileImgUrl)
-                    ref.data(withMaxSize: 2 * 500 * 500, completion: { (data, error) in
+                    let ref = Storage.storage().reference(forURL: profileImgUrl)
+                    ref.getData(maxSize: 2 * 500 * 500, completion: { (data, error) in
                         if error != nil {
                             print("Not able to download profile image from Firebase")
                         } else {
@@ -112,9 +112,9 @@ class UserProfileVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
         let img = profilePhoto.image
         if let imgData = UIImageJPEGRepresentation(img!, 0.2) {
             let imgUid = NSUUID().uuidString
-            let metadata = FIRStorageMetadata()
+            let metadata = StorageMetadata()
             metadata.contentType = "image/jpeg"
-            DataService.ds.REF_POST_IMAGES.child(imgUid).put(imgData, metadata: metadata) { (metadata, error) in
+            DataService.ds.REF_POST_IMAGES.child(imgUid).putData(imgData, metadata: metadata) { (metadata, error) in
                 if error != nil {
                     print("ACCOUNT SETUP: Unable to upload image to Firebase storage")
                 } else {
@@ -169,7 +169,7 @@ class UserProfileVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
     
     @IBAction func logoutPressed(_ sender: UITapGestureRecognizer) {
         KeychainWrapper.standard.removeObject(forKey: KEY_UID)
-        try! FIRAuth.auth()?.signOut()
+        try! Auth.auth().signOut()
         performSegue(withIdentifier: "unwindToSignInVC", sender: self)
     }
     

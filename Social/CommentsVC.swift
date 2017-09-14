@@ -37,7 +37,7 @@ class CommentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         
         DataService.ds.REF_COMMENTS.observe(.value, with: { (snapshot) in
             self.comments = []
-            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+            if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
                 for snap in snapshot {
                     if let commentDict = snap.value as? [String: AnyObject] {
                         let searchPostKey = commentDict["postKey"] as? String ?? "n/a"

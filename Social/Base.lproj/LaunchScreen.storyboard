@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -22,11 +23,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tuP-5v-hK7">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" red="0.75686274509803919" green="0.99215686274509807" blue="0.88235294117647056" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="7IK-tr-7UR">
-                                <rect key="frame" x="65" y="186" width="245" height="235"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="7IK-tr-7UR">
+                                <rect key="frame" x="65" y="84" width="245" height="225"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cat Chat" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UqF-OX-Qn4">
                                         <rect key="frame" x="61.5" y="0.0" width="122.5" height="58"/>
@@ -36,7 +37,7 @@
                                         <size key="shadowOffset" width="0.0" height="0.0"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Cat" translatesAutoresizingMaskIntoConstraints="NO" id="0kg-3z-eXP">
-                                        <rect key="frame" x="0.0" y="78" width="245" height="157"/>
+                                        <rect key="frame" x="0.0" y="68" width="245" height="157"/>
                                     </imageView>
                                 </subviews>
                             </stackView>
@@ -44,10 +45,10 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="tuP-5v-hK7" secondAttribute="trailing" id="4FN-PH-Ioe"/>
-                            <constraint firstItem="7IK-tr-7UR" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-30" id="KaR-Ux-my0"/>
+                            <constraint firstItem="tuP-5v-hK7" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="5Zc-Pf-JFt"/>
+                            <constraint firstItem="7IK-tr-7UR" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="topMargin" constant="84" id="CGb-y7-4Rd"/>
                             <constraint firstItem="7IK-tr-7UR" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="frI-5q-sVN"/>
                             <constraint firstItem="tuP-5v-hK7" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="izJ-wW-8BG"/>
-                            <constraint firstItem="tuP-5v-hK7" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" id="sJP-02-2Qd"/>
                             <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="tuP-5v-hK7" secondAttribute="bottom" id="sXq-4U-Nql"/>
                         </constraints>
                     </view>

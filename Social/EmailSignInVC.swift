@@ -22,6 +22,7 @@ class EmailSignInVC: UIViewController {
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var warningLbl: UILabel!
+    @IBOutlet weak var signInBtn: FancyView!
     
     var signInDelegate: SignInProtocol!
     
@@ -32,11 +33,17 @@ class EmailSignInVC: UIViewController {
         
         emailField.autocorrectionType = .no
         passwordField.autocorrectionType = .no
+        
+        signInBtn.isUserInteractionEnabled = true
     }
     
+    
+    // IBActions
+    
     @IBAction func signInViewTapped(_ sender: UITapGestureRecognizer) {
+        self.signInBtn.isUserInteractionEnabled = false
         if let email = emailField.text, let pwd = passwordField.text {
-            FIRAuth.auth()?.signIn(withEmail: email, password: pwd, completion: { (user, error) in
+            Auth.auth().signIn(withEmail: email, password: pwd, completion: { (user, error) in
                 if error == nil {
                     print("TREVOR: Email user authenticated with Firebase")
                     if let user = user {
@@ -44,11 +51,12 @@ class EmailSignInVC: UIViewController {
                         self.signInDelegate.completeSignIn(id: user.uid, userData: userData)
                     }
                 } else {
-                    FIRAuth.auth()?.createUser(withEmail: email, password: pwd, completion: { (user, error) in
+                    Auth.auth().createUser(withEmail: email, password: pwd, completion: { (user, error) in
                         if error != nil {
                             self.warningLbl.isHidden = false
                             print("TREVOR: Unable to authenticate with Firebase using email")
                         } else {
+
                             print("TREVOR: Successfully authenticated with Firebase")
                             if let user = user {
                                 let userData = ["provider": user.providerID]

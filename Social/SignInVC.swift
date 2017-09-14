@@ -72,8 +72,8 @@ class SignInVC: UIViewController, UIPopoverPresentationControllerDelegate, SignI
     
     // Facebook Login functions - Enable Facebook signin with Firebase and follow developers.facebook.com
 
-    func firebaseAuth(_ credential: FIRAuthCredential) {
-        FIRAuth.auth()?.signIn(with: credential, completion: { (user, error) in
+    func firebaseAuth(_ credential: AuthCredential) {
+        Auth.auth().signIn(with: credential, completion: { (user, error) in
             if error != nil {
                 print("TREVOR: Unable to authenticate with Firebase - \(String(describing: error))")
             } else {
@@ -132,10 +132,10 @@ class SignInVC: UIViewController, UIPopoverPresentationControllerDelegate, SignI
         if let imgData = UIImageJPEGRepresentation(img!, 0.2) {
             
             let imgUid = NSUUID().uuidString // creating a random id for upload images
-            let metadata = FIRStorageMetadata()
+            let metadata = StorageMetadata()
             metadata.contentType = "image/jpeg"
             
-            DataService.ds.REF_POST_IMAGES.child(imgUid).put(imgData, metadata: metadata) { (metadata, error) in
+            DataService.ds.REF_POST_IMAGES.child(imgUid).putData(imgData, metadata: metadata) { (metadata, error) in
                 if error != nil {
                     print("TREVOR: Unable to upload image to Firebase storage")
                 } else {
@@ -192,7 +192,7 @@ class SignInVC: UIViewController, UIPopoverPresentationControllerDelegate, SignI
                 print("TREVOR: User cancelled Facebook authentication")
             } else {
                 print("TREVOR: Successfully authenticated with Facebook")
-                let credential = FIRFacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
+                let credential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
                 self.firebaseAuth(credential)
             }
         }

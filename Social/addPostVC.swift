@@ -101,9 +101,9 @@ class addPostVC: UIViewController, UITextViewDelegate, UIImagePickerControllerDe
         sendDataDelegate?.postToFirebaseFromAddPostVC(caption: caption!)
         if let imgData = UIImageJPEGRepresentation(img, 0.2) {
             let imgUid = NSUUID().uuidString // creating a random id for upload images
-            let metadata = FIRStorageMetadata()
+            let metadata = StorageMetadata()
             metadata.contentType = "image/jpeg"
-            DataService.ds.REF_POST_IMAGES.child(imgUid).put(imgData, metadata: metadata) { (metadata, error) in
+            DataService.ds.REF_POST_IMAGES.child(imgUid).putData(imgData, metadata: metadata) { (metadata, error) in
                 if error != nil {
                     print("TREVOR: Unable to upload image to Firebase storage")
                 } else {
