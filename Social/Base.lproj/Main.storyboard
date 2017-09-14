@@ -647,7 +647,6 @@
                                                             <subviews>
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noImage" translatesAutoresizingMaskIntoConstraints="NO" id="uLg-dr-lsm" customClass="RoundedCnrImg" customModule="Social" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="0.0" width="359" height="300"/>
-                                                                    <color key="backgroundColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="300" id="Evg-RQ-20N"/>
                                                                     </constraints>
@@ -735,7 +734,7 @@
                                                                     </constraints>
                                                                 </view>
                                                             </subviews>
-                                                            <color key="backgroundColor" red="0.97647058819999999" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="300" id="0HP-Ph-4jU"/>
                                                                 <constraint firstItem="uLg-dr-lsm" firstAttribute="centerX" secondItem="dX7-aa-8a6" secondAttribute="centerX" id="Nlr-RS-q3v"/>

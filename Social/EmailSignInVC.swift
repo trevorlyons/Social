@@ -49,18 +49,21 @@ class EmailSignInVC: UIViewController {
                     if let user = user {
                         let userData = ["provider": user.providerID]
                         self.signInDelegate.completeSignIn(id: user.uid, userData: userData)
+//                        self.dismiss(animated: true, completion: nil)
                     }
                 } else {
                     Auth.auth().createUser(withEmail: email, password: pwd, completion: { (user, error) in
                         if error != nil {
+                            self.signInBtn.isUserInteractionEnabled = true
                             self.warningLbl.isHidden = false
                             print("TREVOR: Unable to authenticate with Firebase using email")
                         } else {
-
+                            self.signInBtn.isUserInteractionEnabled = false
                             print("TREVOR: Successfully authenticated with Firebase")
                             if let user = user {
                                 let userData = ["provider": user.providerID]
                                 self.signInDelegate.completeSignInNew(id: user.uid, userData: userData)
+                                self.dismiss(animated: true, completion: nil)
                             }
                         }
                     })

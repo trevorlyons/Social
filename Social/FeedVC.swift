@@ -114,6 +114,8 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
         let post = posts[indexPath.row]
         if let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell") as? PostCell {
             cell.segueDelegate = self
+            cell.postImg.image = UIImage(named: "")
+            cell.profileImg.image = UIImage(named: "")
             if let img = FeedVC.imageCache.object(forKey: post.imageUrl as NSString), let img2 = FeedVC.imageCache.object(forKey: post.profileImg as NSString) {
                 cell.configureCell(post: post, img: img, img2: img2)
                 return cell

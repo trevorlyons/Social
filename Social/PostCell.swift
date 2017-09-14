@@ -125,13 +125,43 @@ class PostCell: UITableViewCell, UIPopoverPresentationControllerDelegate {
     }
     
     @IBAction func deletePressed(_ sender: Any) {
-        self.post.deletePost()
-        self.myPostRef.removeValue()
-        self.likesRef.removeValue()
+        let alertController = UIAlertController(title: "", message: "Are you sure you want to delete this beautiful post meow?", preferredStyle: .alert)
+        let deleteAction = UIAlertAction(title: "Yes", style: .default, handler: { (action: UIAlertAction!) in
+            self.post.deletePost()
+            self.myPostRef.removeValue()
+            self.likesRef.removeValue()
+        })
+        let cancelAction = UIAlertAction(title: "No", style: .default, handler: nil)
+        alertController.addAction(deleteAction)
+        alertController.addAction(cancelAction)
+        
+//        UIApplication.shared.keyWindow?.rootViewController?.present(alertController, animated: true, completion: nil)
+        
+        parentViewController?.present(alertController, animated: true, completion: nil)
+        
+
+        
+//        self.post.deletePost()
+//        self.myPostRef.removeValue()
+//        self.likesRef.removeValue()
     }
     
     @IBAction func commentsPressed(_ sender: Any) {
         let postKey = post.postKey
         segueDelegate.segueToComments(postKey: postKey)
+    }
+}
+
+
+extension UIView {
+    var parentViewController: UIViewController? {
+        var parentResponder: UIResponder? = self
+        while parentResponder != nil {
+            parentResponder = parentResponder!.next
+            if parentResponder is UIViewController {
+                return parentResponder as! UIViewController!
+            }
+        }
+        return nil
     }
 }
