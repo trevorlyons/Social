@@ -12,6 +12,9 @@ import Firebase
 
 class UserProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+    
+    // MARK: IBOutlets
+    
     @IBOutlet weak var privacyPolicyStackView: UIStackView!
     @IBOutlet weak var profileImgStackView: UIStackView!
     @IBOutlet weak var privacyPolicyArrow: UIImageView!
@@ -25,9 +28,15 @@ class UserProfileVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
     @IBOutlet weak var profilePhoto: CircleView!
     @IBOutlet weak var updateProfileImgBtn: FancyView!
     
+    
+    // MARK: Variables and Constants
+    
     var imagePicker: UIImagePickerController!
     var imageSelected = false
     var textFromFile = String()
+    
+    
+    // MARK: viewDidLoad
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,8 +50,6 @@ class UserProfileVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
         acknowledgementsStackView.isHidden = true
         updateProfileImgBtn.isHidden = true
         
-        
-        
         privacyPolicyText.text = textFromFile
         if let path = Bundle.main.path(forResource: "CatChatPrivacyPolicy", ofType: "txt") {
             if let contents = try? String(contentsOfFile: path) {
@@ -52,12 +59,11 @@ class UserProfileVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
         
         acknowledgementsText.text = "Cat Chat would like to thank Firebase for it's purrrrfect databse system.\n\n Also, a big thank you to all the cats who have made this community what it is today - from tom cats to kittens to tigers to persians, we are all a happy family on Cat Chat.\n\n One love."
         
-        
         getProfileImg()
     }
     
     
-    // Height constraints for textviews
+    // MARK: Height constraints for textviews
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -69,7 +75,7 @@ class UserProfileVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
     }
     
     
-    // UIImagePickerController
+    // MARK: UIImagePickerController
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
@@ -83,7 +89,7 @@ class UserProfileVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
     }
     
     
-    // Assign profile image
+    // MARK: Assign profile image
     
     func getProfileImg() {
         let userRef = DataService.ds.REF_USER_CURRENT
@@ -135,7 +141,7 @@ class UserProfileVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
     }
     
     
-    // IBActions
+    // MARK: IBActions
     
     @IBAction func userProfileSectionPressed(_ sender: UITapGestureRecognizer) {
         if profileImgStackView.isHidden == false {

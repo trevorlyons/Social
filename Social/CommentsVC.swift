@@ -11,15 +11,24 @@ import Firebase
 
 class CommentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate {
 
+    
+    // MARK: IBOutlets
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var textBox: TextViewStyle!
     @IBOutlet weak var textCount: UILabel!
     @IBOutlet weak var addCommentStack: UIStackView!
     @IBOutlet weak var addBtn: UIImageView!
     
+    
+    // MARK: Variables and Constants
+    
     var userName: String!
     var postKey: String!
     var comments = [Comment]()
+    
+    
+    // MARK: viewDidLoad
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,7 +63,7 @@ class CommentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     }
     
     
-    // TextBox functions
+    // MARK: TextBox functions
     
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textBox.textColor == UIColor.lightGray {
@@ -78,7 +87,7 @@ class CommentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     }
     
     
-    // TableView
+    // MARK: TableView
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "CommentCell") as? CommentCell {
@@ -106,7 +115,7 @@ class CommentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     }
     
     
-    // Post to Firebase
+    // MARK: Post to Firebase
     
     func postCommentToFirebase() {
         let commentSend = textBox.text
@@ -142,7 +151,7 @@ class CommentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     }
     
     
-    // Scroll timer function
+    // MARK: Scroll timer function
     
     func scrollToBottom() {
         if comments.count <= 1 {
@@ -153,7 +162,7 @@ class CommentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     }
     
 
-    // IBActions
+    // MARK: IBActions
     
     @IBAction func releaseToFeedVC(_ sender: Any) {
         dismiss(animated: true, completion: nil)

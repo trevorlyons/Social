@@ -14,17 +14,30 @@ import SwiftKeychainWrapper
 
 class SignInVC: UIViewController, UIPopoverPresentationControllerDelegate, SignInProtocol {
 
+    
+    // MARK: IBOutlets
+    
     @IBOutlet weak var test: UIImageView!
     @IBOutlet weak var EmailBtn: CircleView!
 
+    
+    // MARK: Variables and Constants
+    
     var dict: [String: Any]!
     var username: String!
     var profileUrl: String!
     
     
+    // MARK: viewDidLoad
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        test.isHidden = true
         }
+    
+    
+    // MARK: viewDidAppear
     
     override func viewDidAppear(_ animated: Bool) {
         
@@ -35,7 +48,7 @@ class SignInVC: UIViewController, UIPopoverPresentationControllerDelegate, SignI
     }
     
     
-    // Segue functions
+    // MARK: Segue functions
     
     func popoverPresentationControllerShouldDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) -> Bool {
         return false
@@ -70,7 +83,7 @@ class SignInVC: UIViewController, UIPopoverPresentationControllerDelegate, SignI
     }
     
     
-    // Facebook Login functions - Enable Facebook signin with Firebase and follow developers.facebook.com
+    // MARK: Facebook Login functions
 
     func firebaseAuth(_ credential: AuthCredential) {
         Auth.auth().signIn(with: credential, completion: { (user, error) in
@@ -126,15 +139,11 @@ class SignInVC: UIViewController, UIPopoverPresentationControllerDelegate, SignI
     }
     
     func uploadFacebookProfileImgFirebase() {
-        
         let img = self.test.image
-        
         if let imgData = UIImageJPEGRepresentation(img!, 0.2) {
-            
             let imgUid = NSUUID().uuidString // creating a random id for upload images
             let metadata = StorageMetadata()
             metadata.contentType = "image/jpeg"
-            
             DataService.ds.REF_POST_IMAGES.child(imgUid).putData(imgData, metadata: metadata) { (metadata, error) in
                 if error != nil {
                     print("TREVOR: Unable to upload image to Firebase storage")
@@ -151,12 +160,11 @@ class SignInVC: UIViewController, UIPopoverPresentationControllerDelegate, SignI
     
     func postToFirebase(imgUrl: String) {
         let profileImage = imgUrl as AnyObject
-        
         DataService.ds.REF_USER_CURRENT.child("ProfileImgUrl").setValue(profileImage)
     }
     
     
-    // function to not repeat keychain code
+    // MARK: function to not repeat keychain code
     
     func completeSignIn(id: String, userData: Dictionary<String, String>) {
         DataService.ds.createFirebaseDBUser(uid: id, userData: userData)
@@ -175,7 +183,7 @@ class SignInVC: UIViewController, UIPopoverPresentationControllerDelegate, SignI
     }
     
     
-    // IBActions
+    // MARK: IBActions
     
     @IBAction func unwindToSignInVC(segue: UIStoryboardSegue) {}
     
@@ -185,6 +193,7 @@ class SignInVC: UIViewController, UIPopoverPresentationControllerDelegate, SignI
     
     @IBAction func facebookViewTapped(_ sender: UITapGestureRecognizer) {
         let facebookLogin = FBSDKLoginManager()
+        facebookLogin.logOut()
         facebookLogin.logIn(withReadPermissions: ["email"], from: self) { (result, error) in
             if error != nil {
                 print("TREVOR: Unable to authenticate with Facebook - \(String(describing: error))")

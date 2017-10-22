@@ -10,16 +10,28 @@ import UIKit
 
 class CommentCell: UITableViewCell {
 
+    
+    // MARK: IBOutlets
+    
     @IBOutlet weak var commentText: UITextView!
     @IBOutlet weak var nameLbl: UILabel!
     @IBOutlet weak var dateLbl: UILabel!
     
+    
+    // MARK: Variables and Constants
+    
     var comment: Comment!
+    
+    
+    // MARK: awakeFromNib
     
     override func awakeFromNib() {
         super.awakeFromNib()
 
     }
+    
+    
+    // MARK: configure cell function
     
     func configureCell(comment: Comment) {
         self.comment = comment

@@ -15,6 +15,9 @@ protocol SegueToComments {
 
 class PostCell: UITableViewCell, UIPopoverPresentationControllerDelegate {
     
+    
+    // MARK: IBOutlets
+    
     @IBOutlet weak var profileImg: UIImageView!
     @IBOutlet weak var usernameLbl: UILabel!
     @IBOutlet weak var postImg: UIImageView!
@@ -23,11 +26,17 @@ class PostCell: UITableViewCell, UIPopoverPresentationControllerDelegate {
     @IBOutlet weak var likeImg: UIImageView!
     @IBOutlet weak var deleteBtn: UIButton!
     
+    
+    // MARK: Variables and Constants
+    
     var post: Post!
     var likesRef: DatabaseReference!
     var myPostRef: DatabaseReference!
     var segueDelegate: SegueToComments!
 
+    
+    // MARK: awakeFromNib
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -40,7 +49,7 @@ class PostCell: UITableViewCell, UIPopoverPresentationControllerDelegate {
     }
     
     
-    // Setting data in post cell
+    // MARK: Setting data in post cell
     
     func configureCell(post: Post, img: UIImage? = nil, img2: UIImage? = nil) {
         self.post = post
@@ -106,7 +115,7 @@ class PostCell: UITableViewCell, UIPopoverPresentationControllerDelegate {
     }
     
     
-    // IBActions
+    // MARK: IBActions
     
     func likeTapped(sender: UITapGestureRecognizer ) {
         sender.isEnabled = false
@@ -135,15 +144,7 @@ class PostCell: UITableViewCell, UIPopoverPresentationControllerDelegate {
         alertController.addAction(deleteAction)
         alertController.addAction(cancelAction)
         
-//        UIApplication.shared.keyWindow?.rootViewController?.present(alertController, animated: true, completion: nil)
-        
         parentViewController?.present(alertController, animated: true, completion: nil)
-        
-
-        
-//        self.post.deletePost()
-//        self.myPostRef.removeValue()
-//        self.likesRef.removeValue()
     }
     
     @IBAction func commentsPressed(_ sender: Any) {

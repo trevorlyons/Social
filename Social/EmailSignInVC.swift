@@ -19,12 +19,21 @@ protocol SignInProtocol {
 
 class EmailSignInVC: UIViewController {
 
+    
+    // MARK: IBOutlets
+    
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var warningLbl: UILabel!
     @IBOutlet weak var signInBtn: FancyView!
     
+    
+    // MARK: Variables and Constants
+    
     var signInDelegate: SignInProtocol!
+    
+    
+    // MARK: viewDidLoad
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +47,7 @@ class EmailSignInVC: UIViewController {
     }
     
     
-    // IBActions
+    // MARK: IBActions
     
     @IBAction func signInViewTapped(_ sender: UITapGestureRecognizer) {
         self.signInBtn.isUserInteractionEnabled = false

@@ -16,16 +16,25 @@ protocol SendDataToFeedVC {
 
 class addPostVC: UIViewController, UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+    
+    // MARK: IBOutlets
+    
     @IBOutlet weak var textField: UITextView!
     @IBOutlet weak var characterCountLbl: UILabel!
     @IBOutlet weak var imageAdd: RoundedCnrImg!
     @IBOutlet weak var selectPhotoWarningLbl: UILabel!
+    
+    
+    // MARK: Variables and Constants
     
     var imagePicker: UIImagePickerController!
     var imageSelected = false
     var caption: String!
     var imageUrl: String!
     var sendDataDelegate: SendDataToFeedVC!
+    
+    
+    // MARK: viewDidLoad
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,7 +52,7 @@ class addPostVC: UIViewController, UITextViewDelegate, UIImagePickerControllerDe
     }
     
     
-    // ImagePicker functions
+    // MARK: ImagePicker functions
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
@@ -57,7 +66,7 @@ class addPostVC: UIViewController, UITextViewDelegate, UIImagePickerControllerDe
     }
     
     
-    // TextField fuctions
+    // MARK: TextField fuctions
     
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.textColor == UIColor.lightGray {
@@ -81,7 +90,7 @@ class addPostVC: UIViewController, UITextViewDelegate, UIImagePickerControllerDe
     }
     
     
-    // IBActions
+    // MARK: IBActions
     
     @IBAction func addPhotoPressed(_ sender: UITapGestureRecognizer) {
         present(imagePicker, animated: true, completion: nil)

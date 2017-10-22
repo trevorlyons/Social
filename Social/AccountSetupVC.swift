@@ -12,13 +12,22 @@ import Firebase
 
 class AccountSetupVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+    
+    // MARK:  IBOutlets
+    
     @IBOutlet weak var userName: UITextField!
     @IBOutlet weak var profileImg: CircleView!
     @IBOutlet weak var enterNameLbl: UILabel!
     @IBOutlet weak var pickImgLbl: UILabel!
     
+    
+    // MARK: Variables and Constants
+    
     var imagePicker: UIImagePickerController!
     var imageSelected = false
+    
+    
+    // MARK: viewDidLoad
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +38,9 @@ class AccountSetupVC: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         userName.autocorrectionType = .no
     }
+    
+    
+    // MARK: ImagePicker
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
@@ -46,7 +58,9 @@ class AccountSetupVC: UIViewController, UIImagePickerControllerDelegate, UINavig
         imagePicker.dismiss(animated: true, completion: nil)
     }
 
-
+    
+    // MARK: IBActions
+    
     @IBAction func camaraBtnPressed(_ sender: UITapGestureRecognizer) {
         present(imagePicker, animated: true, completion: nil)
     }

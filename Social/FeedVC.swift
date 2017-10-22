@@ -12,6 +12,9 @@ import Firebase
 
 class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPopoverPresentationControllerDelegate, SendDataToFeedVC, SegueToComments {
     
+    
+    // MARK: IBOutlets
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var imageAdd: CircleView!
     @IBOutlet weak var mostPopularView: ShadowView!
@@ -23,6 +26,9 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
     @IBOutlet weak var myPostsWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak var newestWidthConstraint: NSLayoutConstraint!
     
+    
+    // MARK: Variables and Constants
+    
     var posts = [Post]()
     var myPosts = [Post]()
     var ImagePicker: UIImagePickerController!
@@ -33,6 +39,9 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
     var profilePic: String!
     var captionFromAddPostVC: String!
 
+    
+    // MARK: viewDidLoad
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -86,21 +95,21 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
     }
     
     
-    // Delegate function - Send caption data for add post
+    // MARK: Delegate function - Send caption data for add post
     
     func postToFirebaseFromAddPostVC(caption: String) {
         captionFromAddPostVC = caption
     }
     
     
-    // Delegate function - Perform segue from cell
+    // MARK: Delegate function - Perform segue from cell
     
     func segueToComments(postKey: String) {
         performSegue(withIdentifier: "toComments", sender: postKey)
     }
     
     
-    // TableView functions
+    // MARK: TableView functions
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -145,7 +154,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
     }
 
     
-    // ImagePicker functions
+    // MARK: ImagePicker functions
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
@@ -158,7 +167,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
     }
     
     
-    // Firebase functions
+    // MARK: Firebase functions
 
     func postToFirebase(imgUrl: String) {
         
@@ -192,7 +201,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
     }
     
     
-    // Segue functions
+    // MARK: Segue functions
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let screenSize = UIScreen.main.bounds
@@ -235,7 +244,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
     }
     
     
-    // IBActions
+    // MARK: IBActions
     
     @IBAction func mostPopularSortPressed(_ sender: UITapGestureRecognizer) {
         if posts.count != 0 {
